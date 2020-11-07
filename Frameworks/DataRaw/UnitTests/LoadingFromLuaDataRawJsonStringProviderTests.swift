@@ -14,7 +14,6 @@ final class LoadingFromLuaDataRawJsonStringProviderTests: TestCase {
             
             let actualJson = try json(string: actualJsonString)
             
-            
             XCTAssertNotNil(actualJson["accumulator"])
         }
     }

@@ -1,4 +1,4 @@
-public protocol ToolProtocol: ItemProtocol {
+public protocol ItemWithLabelProtocol: ItemProtocol {
     var icon: FileName? { get }
     var stackSize: Integer? { get }
     var icons: Icons? { get }

@@ -1,8 +1,8 @@
 public protocol GhostProtocol: EntityProtocol {
-    var minable: Minable? { get }
-    var selectionBox: Rect? { get }
-    var collisionBox: Rect? { get }
     var weight: Float? { get }
+    var selectionBox: Rect? { get }
     var fastReplaceableGroup: String? { get }
+    var minable: Minable? { get }
+    var collisionBox: Rect? { get }
     var icon: FileName? { get }
 }

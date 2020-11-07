@@ -3,5 +3,5 @@ public protocol SelectionToolProtocol: ItemWithLabelProtocol {
     var stackSize: Integer? { get }
     var icons: Icons? { get }
     var order: String? { get }
-    var subgroup: ItemSubgroup? { get }
+    var subgroup: ItemSubgroupName { get }
 }

@@ -1,5 +1,5 @@
 public final class ItemSubgroup: Codable {
-    public let group: ItemGroup
+    public let group: String
     public let order: String
     
     enum CodingKeys: String, CodingKey {

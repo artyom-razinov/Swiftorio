@@ -39,7 +39,7 @@ module Swiftorio
       attributes_hash['resources'] ||= "#{framework_folder}/Resources/**/*"
       
       test_spec 'UnitTests' do |test_spec|
-        test_spec.source_files = "#{framework_folder}/UnitTests/**/#{source_files_mask}"
+        test_spec.source_files = "#{framework_folder}/UnitTests/**/#{source_files_mask}", "#{framework_folder}/Dummy.swift"
         
         test_spec.dependency 'SwiftorioUnitTestsFoundation'
       end  

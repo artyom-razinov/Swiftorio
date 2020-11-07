@@ -3,7 +3,7 @@ public final class Item: Codable {
     public let stackSize: Integer?
     public let icons: Icons?
     public let order: String?
-    public let subgroup: ItemSubgroup?
+    public let subgroup: ItemSubgroupName
     
     enum CodingKeys: String, CodingKey {
         case icon
@@ -15,11 +15,11 @@ public final class Item: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.icon = try container.decode(FileName.self, forKey: .icon)
+        self.icon = try container.decodeIfPresent(FileName.self, forKey: .icon)
         self.stackSize = try container.decodeIfPresent(Integer.self, forKey: .stackSize) ?? 1
         self.icons = try container.decodeIfPresent(Icons.self, forKey: .icons) ?? nil /* FIXME */
-        self.order = try container.decode(String.self, forKey: .order)
-        self.subgroup = try container.decodeIfPresent(ItemSubgroup.self, forKey: .subgroup) /* FIXME ?? other */
+        self.order = try container.decodeIfPresent(String.self, forKey: .order)
+        self.subgroup = try container.decodeIfPresent(String.self, forKey: .subgroup) ?? "other"
     }
     
     public func encode(to encoder: Encoder) throws {

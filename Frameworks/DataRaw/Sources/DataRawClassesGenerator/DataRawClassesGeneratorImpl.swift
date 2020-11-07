@@ -192,7 +192,8 @@ public final class DataRawClassesGeneratorImpl: DataRawClassesGenerator {
                             \(indentation)\(indentation)self.\(property.name) = try container.decodeIfPresent(\(property.type).self, forKey: .\(property.name)) ?? \(defaultValue)\n
                             """
                         } else {
-                            code += "\(indentation)\(indentation)self.\(property.name) = try container.decode(\(property.type).self, forKey: .\(property.name))\n"
+                            let decodeMethod = property.isOptional ? "decodeIfPresent" : "decode"
+                            code += "\(indentation)\(indentation)self.\(property.name) = try container.\(decodeMethod)(\(property.type).self, forKey: .\(property.name))\n"
                         }
                     }
                     
@@ -281,6 +282,14 @@ public final class DataRawClassesGeneratorImpl: DataRawClassesGenerator {
                             }
                         } else {
                             return "\(value)"
+                        }
+                    case let value as String:
+                        if value == "" {
+                            return nil
+                        } else if type == "String" {
+                            return "\"\(value)\""
+                        } else {
+                            return "nil /* FIXME: ?? \(value) */"
                         }
                     default:
                         let value = try (any as? CustomDebugStringConvertible).unwrapOrThrow().debugDescription
