@@ -35,7 +35,7 @@ module Swiftorio
       
       framework_folder = "Frameworks/#{self.framework_folder_name}"
       
-      attributes_hash['source_files'] ||= ["#{framework_folder}/Sources/**/#{source_files_mask}"]#, "#{framework_folder}/Dummy.swift"]
+      attributes_hash['source_files'] ||= ["#{framework_folder}/Sources/**/#{source_files_mask}", "#{framework_folder}/Dummy.swift"]
       attributes_hash['resources'] ||= "#{framework_folder}/Resources/**/*"
       
       test_spec 'UnitTests' do |test_spec|
@@ -59,7 +59,7 @@ module Swiftorio
     def initialize()
       super()
       
-      attributes_hash['source_files'] ||= ["Sources/**/#{source_files_mask}"]#, "Dummy.swift"]
+      attributes_hash['source_files'] ||= ["Sources/**/#{source_files_mask}", "Dummy.swift"]
       attributes_hash['resources'] ||= "Resources/**/*"
     end
   end

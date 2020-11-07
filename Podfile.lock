@@ -63,11 +63,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   lua4swift: ab22d4276eb6ab444ae7800c76c3beccbc136e3c
-  SwiftorioBlueprints: b737c5d6134cf53e9d66ce4b09cb998f97171934
-  SwiftorioDataRaw: 55b63a26f58d01382ac4bdb0d54d1304f388c0e0
-  SwiftorioDi: 84b45827726b318d1eb54f72ebe4380b56d61184
-  SwiftorioFoundation: b4963baca5a830d6337792695884f1c92199616f
-  SwiftorioUnitTestsFoundation: 9a38b0daec4001ed98456f21f3ed75eabd7b1548
+  SwiftorioBlueprints: 625af43c69364dafbbe7cf3731f11bb27befe171
+  SwiftorioDataRaw: 4318c75eff52ffbd02215d410c69ea505624e470
+  SwiftorioDi: 36005909d18ddbd486b9b232c1ed67810d2387e9
+  SwiftorioFoundation: 3cc173479ca209d865085256837224ae1e93f052
+  SwiftorioUnitTestsFoundation: 63d985a7859f7134c4bd0562aec954969ad300de
 
 PODFILE CHECKSUM: 64427363d604314b43fd67161642f795dcf04a30
 

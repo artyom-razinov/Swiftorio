@@ -1,6 +1,6 @@
 import XCTest
 
-extension TestCase {
+extension BaseTestCase {
     public func assertThrows(
         error expectedError: String? = nil,
         file: StaticString = #file,

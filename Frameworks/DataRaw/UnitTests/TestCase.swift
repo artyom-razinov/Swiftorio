@@ -3,7 +3,7 @@ import SwiftorioDi
 import SwiftorioDataRaw
 import SwiftorioUnitTestsFoundation
 
-class TestCase: SwiftorioUnitTestsFoundation.TestCase {
+class TestCase: BaseTestCase {
     let di = TestCaseDi.make(
         dependencyCollectionRegisterer: SwiftorioDataRawDependencyCollectionRegisterer(),
         dependencyInjectionFactory: DependencyInjectionFactoryImpl()

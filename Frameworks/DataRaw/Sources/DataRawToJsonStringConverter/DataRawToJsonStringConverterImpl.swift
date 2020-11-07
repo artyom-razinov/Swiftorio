@@ -25,7 +25,7 @@ public final class DataRawToJsonStringConverterImpl: DataRawToJsonStringConverte
         """
         \(jsonLibCode)
         
-        return encode(\(dataRaw))
+        return json.encode(\(dataRaw))
         """
         
         let evalResults = vm.eval(codeToEval)
