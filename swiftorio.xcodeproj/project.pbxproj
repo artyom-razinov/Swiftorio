@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5413E1060020FADCAA9AA8A9 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A25E0E207F4A180042D76A9 /* Pods_UnitTests.framework */; };
 		A34345A9D02D332272E29917 /* Pods_swiftorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B407B9CDDDBBB2B5BDFD58B2 /* Pods_swiftorio.framework */; };
 		F801FAF22556824A00E24AEE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801FAF12556824A00E24AEE /* main.swift */; };
+		F8D9D88E2557055800A3B02A /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9D88D2557055800A3B02A /* Dummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,11 +26,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D48E8F8FCB206086CCAEAAB /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C5525A64C866B7F81BC2016 /* Pods-swiftorio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftorio.release.xcconfig"; path = "Target Support Files/Pods-swiftorio/Pods-swiftorio.release.xcconfig"; sourceTree = "<group>"; };
+		4A25E0E207F4A180042D76A9 /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B407B9CDDDBBB2B5BDFD58B2 /* Pods_swiftorio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftorio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E68836745ACEA80ED4542E37 /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F136B200AF4038C73DDDA8DA /* Pods-swiftorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftorio.debug.xcconfig"; path = "Target Support Files/Pods-swiftorio/Pods-swiftorio.debug.xcconfig"; sourceTree = "<group>"; };
 		F801FAEE2556824A00E24AEE /* swiftorio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftorio; sourceTree = BUILT_PRODUCTS_DIR; };
 		F801FAF12556824A00E24AEE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F8D9D88B2557055800A3B02A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D9D88D2557055800A3B02A /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		F8D9D88F2557055800A3B02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8D9D8882557055800A3B02A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5413E1060020FADCAA9AA8A9 /* Pods_UnitTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -47,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				B407B9CDDDBBB2B5BDFD58B2 /* Pods_swiftorio.framework */,
+				4A25E0E207F4A180042D76A9 /* Pods_UnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -56,6 +73,8 @@
 			children = (
 				F136B200AF4038C73DDDA8DA /* Pods-swiftorio.debug.xcconfig */,
 				3C5525A64C866B7F81BC2016 /* Pods-swiftorio.release.xcconfig */,
+				E68836745ACEA80ED4542E37 /* Pods-UnitTests.debug.xcconfig */,
+				0D48E8F8FCB206086CCAEAAB /* Pods-UnitTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -64,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				F801FAF02556824A00E24AEE /* swiftorio */,
+				F8D9D88C2557055800A3B02A /* UnitTests */,
 				F801FAEF2556824A00E24AEE /* Products */,
 				9EBC5A9882C6AB0C292EA0E3 /* Pods */,
 				9E1C1A0DA7FEB717155572DF /* Frameworks */,
@@ -74,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				F801FAEE2556824A00E24AEE /* swiftorio */,
+				F8D9D88B2557055800A3B02A /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +105,15 @@
 				F801FAF12556824A00E24AEE /* main.swift */,
 			);
 			path = swiftorio;
+			sourceTree = "<group>";
+		};
+		F8D9D88C2557055800A3B02A /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F8D9D88D2557055800A3B02A /* Dummy.swift */,
+				F8D9D88F2557055800A3B02A /* Info.plist */,
+			);
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +137,25 @@
 			productReference = F801FAEE2556824A00E24AEE /* swiftorio */;
 			productType = "com.apple.product-type.tool";
 		};
+		F8D9D88A2557055800A3B02A /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D9D8922557055800A3B02A /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				6E819B90EA7C1CC62F046A24 /* [CP] Check Pods Manifest.lock */,
+				F8D9D8872557055800A3B02A /* Sources */,
+				F8D9D8882557055800A3B02A /* Frameworks */,
+				F8D9D8892557055800A3B02A /* Resources */,
+				2344F98933492D0940552CDE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = F8D9D88B2557055800A3B02A /* UnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -118,6 +167,9 @@
 				ORGANIZATIONNAME = Example;
 				TargetAttributes = {
 					F801FAED2556824A00E24AEE = {
+						CreatedOnToolsVersion = 11.7;
+					};
+					F8D9D88A2557055800A3B02A = {
 						CreatedOnToolsVersion = 11.7;
 					};
 				};
@@ -136,11 +188,61 @@
 			projectRoot = "";
 			targets = (
 				F801FAED2556824A00E24AEE /* swiftorio */,
+				F8D9D88A2557055800A3B02A /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		F8D9D8892557055800A3B02A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXShellScriptBuildPhase section */
+		2344F98933492D0940552CDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UnitTests/Pods-UnitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E819B90EA7C1CC62F046A24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UnitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		813C4605AA84FDB83FDD0997 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +273,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F801FAF22556824A00E24AEE /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8D9D8872557055800A3B02A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8D9D88E2557055800A3B02A /* Dummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +405,16 @@
 			baseConfigurationReference = F136B200AF4038C73DDDA8DA /* Pods-swiftorio.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/SwiftorioBlueprints/",
+					"@executable_path/SwiftorioDataRaw/",
+					"@executable_path/SwiftorioDi/",
+					"@executable_path/SwiftorioFoundation/",
+					"@executable_path/lua4swift/",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -305,6 +425,62 @@
 			baseConfigurationReference = 3C5525A64C866B7F81BC2016 /* Pods-swiftorio.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/SwiftorioBlueprints/",
+					"@executable_path/SwiftorioDataRaw/",
+					"@executable_path/SwiftorioDi/",
+					"@executable_path/SwiftorioFoundation/",
+					"@executable_path/lua4swift/",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F8D9D8902557055800A3B02A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E68836745ACEA80ED4542E37 /* Pods-UnitTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/SwiftorioBlueprints/",
+					"@executable_path/SwiftorioDataRaw/",
+					"@executable_path/SwiftorioDi/",
+					"@executable_path/SwiftorioFoundation/",
+					"@executable_path/lua4swift/",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F8D9D8912557055800A3B02A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D48E8F8FCB206086CCAEAAB /* Pods-UnitTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+					"@executable_path/SwiftorioBlueprints/",
+					"@executable_path/SwiftorioDataRaw/",
+					"@executable_path/SwiftorioDi/",
+					"@executable_path/SwiftorioFoundation/",
+					"@executable_path/lua4swift/",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -327,6 +503,15 @@
 			buildConfigurations = (
 				F801FAF62556824A00E24AEE /* Debug */,
 				F801FAF72556824A00E24AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8D9D8922557055800A3B02A /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8D9D8902557055800A3B02A /* Debug */,
+				F8D9D8912557055800A3B02A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

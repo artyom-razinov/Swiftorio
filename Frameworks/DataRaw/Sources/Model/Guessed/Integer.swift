@@ -1,0 +1,1 @@
+public typealias Integer = Int

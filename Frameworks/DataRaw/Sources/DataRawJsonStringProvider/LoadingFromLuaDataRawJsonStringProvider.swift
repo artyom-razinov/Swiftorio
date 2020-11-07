@@ -17,7 +17,7 @@ public final class LoadingFromLuaDataRawJsonStringProvider: DataRawJsonStringPro
     public func dataRawJsonString() throws -> String {
         let jsonLibCode = try stringFromBundleLoader.loadString(
             bundle: Bundle(for: Self.self),
-            resourceName: "raw.lua"
+            resourceName: "data_raw.lua"
         )
         
         return try dataRawToJsonStringConverter.toJsonString(dataRaw: jsonLibCode)

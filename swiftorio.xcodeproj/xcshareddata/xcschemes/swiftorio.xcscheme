@@ -28,36 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A5AD1D6F9451944CBC972E1BEAA6368"
-               BuildableName = "SwiftorioDataRaw-Unit-UnitTests.xctest"
-               BlueprintName = "SwiftorioDataRaw-Unit-UnitTests"
-               ReferencedContainer = "container:Pods/SwiftorioDataRaw.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F3170A5DA717303B259FBA91D1C5A4EB"
-               BuildableName = "SwiftorioDi-Unit-UnitTests.xctest"
-               BlueprintName = "SwiftorioDi-Unit-UnitTests"
-               ReferencedContainer = "container:Pods/SwiftorioDi.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2EB5B26F8899CD2E3A2A548401333968"
-               BuildableName = "SwiftorioFoundation-Unit-UnitTests.xctest"
-               BlueprintName = "SwiftorioFoundation-Unit-UnitTests"
-               ReferencedContainer = "container:Pods/SwiftorioFoundation.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
