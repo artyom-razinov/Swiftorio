@@ -1,0 +1,74 @@
+PODS:
+  - lua4swift (1.0.0)
+  - SwiftorioBlueprints (0.0.1):
+    - SwiftorioDataRaw
+    - SwiftorioDi
+    - SwiftorioFoundation
+  - SwiftorioBlueprints/UnitTests (0.0.1):
+    - SwiftorioDataRaw
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioDataRaw (0.0.1):
+    - lua4swift
+    - SwiftorioDi
+    - SwiftorioFoundation
+  - SwiftorioDataRaw/UnitTests (0.0.1):
+    - lua4swift
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioDi (0.0.1):
+    - SwiftorioFoundation
+  - SwiftorioDi/UnitTests (0.0.1):
+    - SwiftorioFoundation
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioFoundation (0.0.1)
+  - SwiftorioFoundation/UnitTests (0.0.1):
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioUnitTestsFoundation (0.0.1):
+    - SwiftorioDi
+    - SwiftorioFoundation
+
+DEPENDENCIES:
+  - lua4swift (from `https://github.com/weyhan/lua4swift`)
+  - SwiftorioBlueprints (from `.`)
+  - SwiftorioBlueprints/UnitTests (from `.`)
+  - SwiftorioDataRaw (from `.`)
+  - SwiftorioDataRaw/UnitTests (from `.`)
+  - SwiftorioDi (from `.`)
+  - SwiftorioDi/UnitTests (from `.`)
+  - SwiftorioFoundation (from `.`)
+  - SwiftorioFoundation/UnitTests (from `.`)
+  - SwiftorioUnitTestsFoundation (from `PrivateFrameworks/UnitTestsFoundation`)
+
+EXTERNAL SOURCES:
+  lua4swift:
+    :git: https://github.com/weyhan/lua4swift
+  SwiftorioBlueprints:
+    :path: "."
+  SwiftorioDataRaw:
+    :path: "."
+  SwiftorioDi:
+    :path: "."
+  SwiftorioFoundation:
+    :path: "."
+  SwiftorioUnitTestsFoundation:
+    :path: PrivateFrameworks/UnitTestsFoundation
+
+CHECKOUT OPTIONS:
+  lua4swift:
+    :commit: d965cb3155aa833300b2cf8559accac5372b79ee
+    :git: https://github.com/weyhan/lua4swift
+
+SPEC CHECKSUMS:
+  lua4swift: ab22d4276eb6ab444ae7800c76c3beccbc136e3c
+  SwiftorioBlueprints: b737c5d6134cf53e9d66ce4b09cb998f97171934
+  SwiftorioDataRaw: 55b63a26f58d01382ac4bdb0d54d1304f388c0e0
+  SwiftorioDi: 84b45827726b318d1eb54f72ebe4380b56d61184
+  SwiftorioFoundation: b4963baca5a830d6337792695884f1c92199616f
+  SwiftorioUnitTestsFoundation: 9a38b0daec4001ed98456f21f3ed75eabd7b1548
+
+PODFILE CHECKSUM: 64427363d604314b43fd67161642f795dcf04a30
+
+COCOAPODS: 1.9.0.beta.2

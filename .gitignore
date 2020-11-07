@@ -1,0 +1,43 @@
+# MAC OS
+.DS_Store
+nohup,out
+
+# AppCode
+.idea
+
+# Xcode
+xcuserdata
+xcuserdata/
+*.xccheckout
+*.xcworkspacedata
+*.xcuserstate
+*.xcscmblueprint
+*.orig
+IDEWorkspaceChecks.plist
+DerivedData/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/
+
+# Python
+__pycache__/
+dist/
+.pytest_cache/
+.python-version
+.mypy_cache/
+.coverage
+*.egg-info
+*.pyc
+
+# Utility
+*.ignored*
+
+# Sourcery
+*.profraw
+
+# Swift package manager
+.build/
+*.d
