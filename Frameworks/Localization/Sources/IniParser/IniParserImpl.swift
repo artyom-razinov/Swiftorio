@@ -2,6 +2,9 @@ import SwiftorioFoundation
 
 // https://en.wikipedia.org/wiki/INI_file
 public final class IniParserImpl: IniParser {
+    public init() {
+    }
+    
     public func parseIni(string: String) throws -> Ini {
         let scanner = Scanner(string: string)
         scanner.charactersToBeSkipped = .whitespacesAndNewlines

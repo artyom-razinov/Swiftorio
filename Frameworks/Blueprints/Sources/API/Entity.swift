@@ -1,4 +1,4 @@
-public struct Entity: Codable {
+public final class Entity: Codable {
     // Index of the entity, 1-based.
     public let entity_number: Integer
     
@@ -51,7 +51,7 @@ public struct Entity: Codable {
     public let filters: [ItemFilter]?
     
     // Filter mode of the filter inserter, optional. Either "whitelist" or "blacklist".
-    public let filter_mode: FilterMode
+    public let filter_mode: FilterMode?
     
     // The stack size the inserter is set to, optional. Types/uint8.
     public let override_stack_size: UInt8?
@@ -66,7 +66,7 @@ public struct Entity: Codable {
     public let request_filters: LogisticFilter?
     
     // Boolean. Whether this requester chest can request from buffer chests.
-    public let request_from_buffers: Bool
+    public let request_from_buffers: Bool?
     
     // Used by Programmable speaker, optional. #Speaker parameter object.
     public let parameters: SpeakerParameter?
@@ -85,4 +85,66 @@ public struct Entity: Codable {
     
     // The name of the train station, optional.
     public let station: String?
+    
+    public init(
+        entity_number: Integer,
+        name: String,
+        position: Position,
+        direction: UInt?,
+        orientation: Floating?,
+        connections: Connection?,
+        control_behaviour: ControlBehaviour?,
+        items: ItemRequest?,
+        recipe: String?,
+        bar: ItemStackIndex?,
+        inventory: Inventory?,
+        infinity_settings: InfinitySettings?,
+        type: UndergroundBeltType?,
+        input_priority: SplitterPriority?,
+        output_priority: SplitterPriority?,
+        filter: String?,
+        filters: [ItemFilter]?,
+        filter_mode: FilterMode?,
+        override_stack_size: UInt8?,
+        drop_position: Position?,
+        pickup_position: Position?,
+        request_filters: LogisticFilter?,
+        request_from_buffers: Bool?,
+        parameters: SpeakerParameter?,
+        alert_parameters: SpeakerAlertParameter?,
+        auto_launch: Bool?,
+        variation: GraphicsVariation?,
+        color: Color?,
+        station: String?)
+    {
+        self.entity_number = entity_number
+        self.name = name
+        self.position = position
+        self.direction = direction
+        self.orientation = orientation
+        self.connections = connections
+        self.control_behaviour = control_behaviour
+        self.items = items
+        self.recipe = recipe
+        self.bar = bar
+        self.inventory = inventory
+        self.infinity_settings = infinity_settings
+        self.type = type
+        self.input_priority = input_priority
+        self.output_priority = output_priority
+        self.filter = filter
+        self.filters = filters
+        self.filter_mode = filter_mode
+        self.override_stack_size = override_stack_size
+        self.drop_position = drop_position
+        self.pickup_position = pickup_position
+        self.request_filters = request_filters
+        self.request_from_buffers = request_from_buffers
+        self.parameters = parameters
+        self.alert_parameters = alert_parameters
+        self.auto_launch = auto_launch
+        self.variation = variation
+        self.color = color
+        self.station = station
+    }
 }

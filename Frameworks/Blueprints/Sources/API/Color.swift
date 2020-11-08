@@ -1,4 +1,4 @@
-public struct Color: Codable {
+public final class Color: Codable {
     // red, number from 0 to 1.
     public let r: Floating
     
@@ -10,4 +10,11 @@ public struct Color: Codable {
     
     // transparency, number from 0 to 1.
     public let a: Floating
+    
+    public init(r: Floating, g: Floating, b: Floating, a: Floating) {
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+    }
 }

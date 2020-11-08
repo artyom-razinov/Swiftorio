@@ -22,6 +22,7 @@ def swiftorio_pod_names()
     'SwiftorioRichText',
     'SwiftorioGameBundle',
     'SwiftorioLocalization',
+    'SwiftorioTrainStations',
   ]
 end
 

@@ -12,7 +12,7 @@ public final class BlueprintBook: Codable {
     public let label_color: Color?
     
     // The actual content of the blueprint book, array of objects containing an "index" key and 0-based value and a "blueprint" key with a #Blueprint object as the value.
-    public let blueprints: [IndexedBlueprint]
+    public let blueprints: [BlueprintBookItem]
     
     // Index of the currently selected blueprint, 0-based.
     public let active_index: Integer
@@ -25,7 +25,7 @@ public final class BlueprintBook: Codable {
         label: String,
         description: String?,
         label_color: Color?,
-        blueprints: [IndexedBlueprint],
+        blueprints: [BlueprintBookItem],
         active_index: Integer,
         version: LongInteger)
     {

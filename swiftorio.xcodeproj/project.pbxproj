@@ -14,15 +14,6 @@
 		F878DCFF2557E1A2001EFEC3 /* FindTopLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878DCFE2557E1A2001EFEC3 /* FindTopLevel.swift */; };
 		F878DD012557E1B1001EFEC3 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878DD002557E1B1001EFEC3 /* Shortcuts.swift */; };
 		F8D9D88E2557055800A3B02A /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9D88D2557055800A3B02A /* Dummy.swift */; };
-		F8DB052A255812A200527017 /* TrainStationsBlueprintBookProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0529255812A200527017 /* TrainStationsBlueprintBookProvider.swift */; };
-		F8DB052D255812D100527017 /* TrainStationsBlueprintBookProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB052C255812D100527017 /* TrainStationsBlueprintBookProviderImpl.swift */; };
-		F8DB0530255818B500527017 /* TrainCargoEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB052F255818B500527017 /* TrainCargoEntityType.swift */; };
-		F8DB0532255818C100527017 /* ItemTrainCargoEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0531255818C100527017 /* ItemTrainCargoEntityType.swift */; };
-		F8DB0534255818CE00527017 /* TrainCargoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0533255818CE00527017 /* TrainCargoEntity.swift */; };
-		F8DB0536255818D900527017 /* NamedPrototype.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0535255818D900527017 /* NamedPrototype.swift */; };
-		F8DB0538255818E800527017 /* TypedTrainCargoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0537255818E800527017 /* TypedTrainCargoEntity.swift */; };
-		F8DB053A255818FA00527017 /* FluidTrainCargoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB0539255818FA00527017 /* FluidTrainCargoEntity.swift */; };
-		F8DB053C2558190100527017 /* ItemTrainCargoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB053B2558190100527017 /* ItemTrainCargoEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,15 +43,6 @@
 		F8D9D88B2557055800A3B02A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D9D88D2557055800A3B02A /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		F8D9D88F2557055800A3B02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8DB0529255812A200527017 /* TrainStationsBlueprintBookProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrainStationsBlueprintBookProvider.swift; path = swiftorio/TrainStations/TrainStationsBlueprintBookProvider.swift; sourceTree = SOURCE_ROOT; };
-		F8DB052C255812D100527017 /* TrainStationsBlueprintBookProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainStationsBlueprintBookProviderImpl.swift; sourceTree = "<group>"; };
-		F8DB052F255818B500527017 /* TrainCargoEntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCargoEntityType.swift; sourceTree = "<group>"; };
-		F8DB0531255818C100527017 /* ItemTrainCargoEntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTrainCargoEntityType.swift; sourceTree = "<group>"; };
-		F8DB0533255818CE00527017 /* TrainCargoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCargoEntity.swift; sourceTree = "<group>"; };
-		F8DB0535255818D900527017 /* NamedPrototype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedPrototype.swift; sourceTree = "<group>"; };
-		F8DB0537255818E800527017 /* TypedTrainCargoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedTrainCargoEntity.swift; sourceTree = "<group>"; };
-		F8DB0539255818FA00527017 /* FluidTrainCargoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidTrainCargoEntity.swift; sourceTree = "<group>"; };
-		F8DB053B2558190100527017 /* ItemTrainCargoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTrainCargoEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +108,6 @@
 		F801FAF02556824A00E24AEE /* swiftorio */ = {
 			isa = PBXGroup;
 			children = (
-				F8DB05282558127C00527017 /* TrainStations */,
 				F878DD1A2557F347001EFEC3 /* Playground */,
 				F801FAF12556824A00E24AEE /* main.swift */,
 			);
@@ -150,38 +131,6 @@
 				F8D9D88F2557055800A3B02A /* Info.plist */,
 			);
 			path = UnitTests;
-			sourceTree = "<group>";
-		};
-		F8DB05282558127C00527017 /* TrainStations */ = {
-			isa = PBXGroup;
-			children = (
-				F8DB052E255818AD00527017 /* Model */,
-				F8DB052B255812A600527017 /* TrainStationsBlueprintBookProvider */,
-			);
-			path = TrainStations;
-			sourceTree = "<group>";
-		};
-		F8DB052B255812A600527017 /* TrainStationsBlueprintBookProvider */ = {
-			isa = PBXGroup;
-			children = (
-				F8DB0529255812A200527017 /* TrainStationsBlueprintBookProvider.swift */,
-				F8DB052C255812D100527017 /* TrainStationsBlueprintBookProviderImpl.swift */,
-			);
-			path = TrainStationsBlueprintBookProvider;
-			sourceTree = "<group>";
-		};
-		F8DB052E255818AD00527017 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F8DB052F255818B500527017 /* TrainCargoEntityType.swift */,
-				F8DB0531255818C100527017 /* ItemTrainCargoEntityType.swift */,
-				F8DB0533255818CE00527017 /* TrainCargoEntity.swift */,
-				F8DB0535255818D900527017 /* NamedPrototype.swift */,
-				F8DB0537255818E800527017 /* TypedTrainCargoEntity.swift */,
-				F8DB0539255818FA00527017 /* FluidTrainCargoEntity.swift */,
-				F8DB053B2558190100527017 /* ItemTrainCargoEntity.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,19 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8DB052A255812A200527017 /* TrainStationsBlueprintBookProvider.swift in Sources */,
-				F8DB053C2558190100527017 /* ItemTrainCargoEntity.swift in Sources */,
-				F8DB053A255818FA00527017 /* FluidTrainCargoEntity.swift in Sources */,
 				F801FAF22556824A00E24AEE /* main.swift in Sources */,
 				F878DD012557E1B1001EFEC3 /* Shortcuts.swift in Sources */,
-				F8DB0530255818B500527017 /* TrainCargoEntityType.swift in Sources */,
-				F8DB0536255818D900527017 /* NamedPrototype.swift in Sources */,
 				F878DCFF2557E1A2001EFEC3 /* FindTopLevel.swift in Sources */,
 				F878DCFD25574E00001EFEC3 /* GenerateDataRaw.swift in Sources */,
-				F8DB0534255818CE00527017 /* TrainCargoEntity.swift in Sources */,
-				F8DB0538255818E800527017 /* TypedTrainCargoEntity.swift in Sources */,
-				F8DB052D255812D100527017 /* TrainStationsBlueprintBookProviderImpl.swift in Sources */,
-				F8DB0532255818C100527017 /* ItemTrainCargoEntityType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +436,7 @@
 					"@executable_path/SwiftorioRichText/",
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
+					"@executable_path/SwiftorioTrainStations/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
@@ -521,6 +462,7 @@
 					"@executable_path/SwiftorioRichText/",
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
+					"@executable_path/SwiftorioTrainStations/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
@@ -548,6 +490,7 @@
 					"@executable_path/SwiftorioRichText/",
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
+					"@executable_path/SwiftorioTrainStations/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
@@ -576,6 +519,7 @@
 					"@executable_path/SwiftorioRichText/",
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
+					"@executable_path/SwiftorioTrainStations/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",

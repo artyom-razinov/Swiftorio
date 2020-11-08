@@ -1,9 +1,12 @@
 import SwiftorioBlueprints
+import SwiftorioTrainStations
 import SwiftorioDataRaw
 import SwiftorioDi
 
 withDi { di in
-    try FindTopLevel(dataRawJsonStringProvider: try di.resolve()).find()
+    let provider = try di.resolve() as TrainStationsBlueprintBookProvider
+    
+    let book = try provider.trainStationsBlueprintBook()
 }
 
 //

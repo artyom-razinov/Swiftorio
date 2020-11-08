@@ -4,4 +4,9 @@ public struct Icon: Codable {
     
     // The icon that is displayed, #SignalID object.
     public let signal: SignalId
+    
+    public init(index: Integer, signal: SignalId) {
+        self.index = index
+        self.signal = signal
+    }
 }

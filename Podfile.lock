@@ -55,6 +55,19 @@ PODS:
     - SwiftorioDi
     - SwiftorioFoundation
     - SwiftorioUnitTestsFoundation
+  - SwiftorioTrainStations (0.0.1):
+    - SwiftorioBlueprints
+    - SwiftorioDataRaw
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioLocalization
+  - SwiftorioTrainStations/UnitTests (0.0.1):
+    - SwiftorioBlueprints
+    - SwiftorioDataRaw
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioLocalization
+    - SwiftorioUnitTestsFoundation
   - SwiftorioUnitTestsFoundation (0.0.1):
     - SwiftorioDi
     - SwiftorioFoundation
@@ -77,6 +90,8 @@ DEPENDENCIES:
   - SwiftorioLocalization/UnitTests (from `.`)
   - SwiftorioRichText (from `.`)
   - SwiftorioRichText/UnitTests (from `.`)
+  - SwiftorioTrainStations (from `.`)
+  - SwiftorioTrainStations/UnitTests (from `.`)
   - SwiftorioUnitTestsFoundation (from `PrivateFrameworks/UnitTestsFoundation`)
 
 SPEC REPOS:
@@ -102,6 +117,8 @@ EXTERNAL SOURCES:
     :path: "."
   SwiftorioRichText:
     :path: "."
+  SwiftorioTrainStations:
+    :path: "."
   SwiftorioUnitTestsFoundation:
     :path: PrivateFrameworks/UnitTestsFoundation
 
@@ -121,8 +138,9 @@ SPEC CHECKSUMS:
   SwiftorioGameBundle: 9c60f3de35f3bc4338ccb0b068f8f3ea541d8dee
   SwiftorioLocalization: 2f93b278c87879b59f21c440d12650b3a7923183
   SwiftorioRichText: fb8c66a168a7bc1413eff3944150e9203cd9face
+  SwiftorioTrainStations: 29ccbcbf65a8442c05bc1d298e69d4a47a91d880
   SwiftorioUnitTestsFoundation: 63d985a7859f7134c4bd0562aec954969ad300de
 
-PODFILE CHECKSUM: 1abecfc82c64c2c11b0fdad143b033da955a050c
+PODFILE CHECKSUM: 11f0f1913e82f1cab7f80dc05e97d681ebaadc1b
 
 COCOAPODS: 1.9.0.beta.2

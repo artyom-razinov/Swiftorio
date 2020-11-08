@@ -1,5 +1,11 @@
 import SwiftorioDi
 import SwiftorioDataRaw
+import SwiftorioTrainStations
+import SwiftorioGameBundle
+import SwiftorioFoundation
+import SwiftorioRichText
+import SwiftorioBlueprints
+import SwiftorioLocalization
 
 public func json(string: String) throws -> [String: Any] {
     let jsonObject = try JSONSerialization.jsonObject(
@@ -13,11 +19,28 @@ public func json(string: String) throws -> [String: Any] {
     )
 }
 
+public final class SwiftorioDependencyCollectionRegisterer: BaseNestingDependencyCollectionRegisterer {
+    public override func nestedRegisterers() -> [DependencyCollectionRegisterer] {
+        return [
+            SwiftorioTrainStationsDependencyCollectionRegisterer(),
+            SwiftorioRichTextDependencyCollectionRegisterer(),
+            SwiftorioLocalizationDependencyCollectionRegisterer(),
+            SwiftorioGameBundleDependencyCollectionRegisterer(),
+            SwiftorioFoundationDependencyCollectionRegisterer(),
+            SwiftorioDataRawDependencyCollectionRegisterer(),
+            SwiftorioBlueprintsDependencyCollectionRegisterer()
+        ]
+    }
+    
+    public override func registerTopLevelDependencies(di: DependencyRegisterer) {
+    }
+}
+
 public func withDi(body: (DependencyResolver) throws -> ()) {
     do {
         let dependencyInjectionFactory = DependencyInjectionFactoryImpl()
         let di = dependencyInjectionFactory.dependencyInjection()
-        let dependencyCollectionRegisterer = SwiftorioDataRawDependencyCollectionRegisterer()
+        let dependencyCollectionRegisterer = SwiftorioDependencyCollectionRegisterer()
 
         dependencyCollectionRegisterer.register(dependencyRegisterer: di)
         
