@@ -1,12 +1,16 @@
 PODS:
+  - DataCompression (3.6.0)
+  - GzipSwift (5.1.1)
   - INIParser (4.0.0)
   - lua4swift (1.0.0)
   - PathKit (1.0.0)
   - SwiftorioBlueprints (0.0.1):
+    - GzipSwift
     - SwiftorioDataRaw
     - SwiftorioDi
     - SwiftorioFoundation
   - SwiftorioBlueprints/UnitTests (0.0.1):
+    - GzipSwift
     - SwiftorioDataRaw
     - SwiftorioDi
     - SwiftorioFoundation
@@ -75,6 +79,8 @@ PODS:
     - SwiftorioFoundation
 
 DEPENDENCIES:
+  - DataCompression
+  - GzipSwift
   - INIParser (from `/Users/razinov/src/Perfect-INIParser`)
   - lua4swift (from `https://github.com/weyhan/lua4swift`)
   - PathKit
@@ -98,6 +104,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - DataCompression
+    - GzipSwift
     - PathKit
 
 EXTERNAL SOURCES:
@@ -130,10 +138,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/weyhan/lua4swift
 
 SPEC CHECKSUMS:
+  DataCompression: 06628f9c807b6f152e0da37635633f62fc51dc77
+  GzipSwift: 893f3e48e597a1a4f62fafcb6514220fcf8287fa
   INIParser: f801bec6ba8085f6e9c8fa7c6d3b65853a08f0c9
   lua4swift: ab22d4276eb6ab444ae7800c76c3beccbc136e3c
   PathKit: 364e0de7fb5adb142aecab4e112187e5548fc4b6
-  SwiftorioBlueprints: 7cec62af1909e9b4b1a13c6e63bc31445b9a3d4c
+  SwiftorioBlueprints: 749df4dbac2310fdfdbfb04b780268891278fe39
   SwiftorioDataRaw: 03e9328f081c670bbf8bb507802da1747bdbd19d
   SwiftorioDi: 2f6dbf79c16ac8f1753cb7ab22795557d1c01687
   SwiftorioFoundation: 4ff3e05f4db3441db8e5a874d5824f03ac4b1a14
@@ -143,6 +153,6 @@ SPEC CHECKSUMS:
   SwiftorioTrainStations: 3cc14c2046082bbd9d14a1e2780ffa6e26fdb09e
   SwiftorioUnitTestsFoundation: 63d985a7859f7134c4bd0562aec954969ad300de
 
-PODFILE CHECKSUM: 11f0f1913e82f1cab7f80dc05e97d681ebaadc1b
+PODFILE CHECKSUM: 06b0428e0caddc54d174e086a86fe659da62e11d
 
 COCOAPODS: 1.9.0.beta.2

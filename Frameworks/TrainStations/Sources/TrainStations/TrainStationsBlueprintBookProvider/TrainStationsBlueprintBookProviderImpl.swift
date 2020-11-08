@@ -27,9 +27,9 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         )
     }
     
-    private func indexed(_ books: [SwiftorioBlueprints.BlueprintBook]) -> [BlueprintBookItem] {
+    private func indexed(_ books: [SwiftorioBlueprints.BlueprintBook]) -> [IndexedBlueprintOrBook] {
         return books.enumerated().map { (index, book) in
-            BlueprintBookItem.blueprint_book(
+            IndexedBlueprintOrBook.book(
                 IndexedBlueprintBook(
                     blueprint_book: book,
                     index: index
@@ -38,9 +38,9 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
     }
     
-    private func indexed(_ blueprints: [SwiftorioBlueprints.Blueprint]) -> [BlueprintBookItem] {
+    private func indexed(_ blueprints: [SwiftorioBlueprints.Blueprint]) -> [IndexedBlueprintOrBook] {
         return blueprints.enumerated().map { (index, blueprint) in
-            BlueprintBookItem.blueprint(
+            IndexedBlueprintOrBook.blueprint(
                 IndexedBlueprint(
                     blueprint: blueprint,
                     index: index
@@ -359,7 +359,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         return trainCargoEntities
     }
     
-    private func book(label: String, description: String? = nil, blueprints: [BlueprintBookItem]) -> SwiftorioBlueprints.BlueprintBook {
+    private func book(label: String, description: String? = nil, blueprints: [IndexedBlueprintOrBook]) -> SwiftorioBlueprints.BlueprintBook {
         return SwiftorioBlueprints.BlueprintBook(
             item: "blueprint-book",
             label: label,

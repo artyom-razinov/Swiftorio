@@ -22,7 +22,7 @@ def swiftorio_pod_names()
     'SwiftorioRichText',
     'SwiftorioGameBundle',
     'SwiftorioLocalization',
-    'SwiftorioTrainStations',
+    'SwiftorioTrainStations'
   ]
 end
 
@@ -30,7 +30,9 @@ def all_framework_names()
   return swiftorio_pod_names + [
     'lua4swift',
     'INIParser',
-    'PathKit'
+    'PathKit',
+    'DataCompression',
+    'GzipSwift'
   ]
 end
 
@@ -38,6 +40,8 @@ def swiftorio_dependencies()
   pod 'lua4swift', :git => 'https://github.com/weyhan/lua4swift', :inhibit_warnings => true
   pod 'INIParser', :path => '/Users/razinov/src/Perfect-INIParser'
   pod 'PathKit'
+  pod 'DataCompression'
+  pod 'GzipSwift'
   
   swiftorio_pod_names.each do |pod_name|
     swiftorio_pod pod_name
