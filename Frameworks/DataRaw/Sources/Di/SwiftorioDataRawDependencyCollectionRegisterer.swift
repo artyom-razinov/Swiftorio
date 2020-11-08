@@ -1,11 +1,14 @@
 import SwiftorioDi
 import SwiftorioFoundation
 
-public final class SwiftorioDataRawDependencyCollectionRegisterer: DependencyCollectionRegisterer {
-    public init() {
+public final class SwiftorioDataRawDependencyCollectionRegisterer: BaseNestingDependencyCollectionRegisterer {
+    public override func nestedRegisterers() -> [DependencyCollectionRegisterer] {
+        return [
+            SwiftorioFoundationDependencyCollectionRegisterer()
+        ]
     }
     
-    public func register(dependencyRegisterer di: DependencyRegisterer) {
+    public override func registerTopLevelDependencies(di: DependencyRegisterer) {
         // TODO: Move to `SwiftorioFoundation`
         di.register(type: TemporaryDirectoryPathProvider.self) { _ in
             NsTemporaryDirectoryPathProvider()

@@ -1,5 +1,7 @@
 PODS:
+  - INIParser (4.0.0)
   - lua4swift (1.0.0)
+  - PathKit (1.0.0)
   - SwiftorioBlueprints (0.0.1):
     - SwiftorioDataRaw
     - SwiftorioDi
@@ -18,13 +20,33 @@ PODS:
     - SwiftorioDi
     - SwiftorioFoundation
     - SwiftorioUnitTestsFoundation
-  - SwiftorioDi (0.0.1):
-    - SwiftorioFoundation
+  - SwiftorioDi (0.0.1)
   - SwiftorioDi/UnitTests (0.0.1):
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioFoundation (0.0.1):
+    - SwiftorioDi
+  - SwiftorioFoundation/UnitTests (0.0.1):
+    - SwiftorioDi
+    - SwiftorioUnitTestsFoundation
+  - SwiftorioGameBundle (0.0.1):
+    - PathKit
+    - SwiftorioDi
+    - SwiftorioFoundation
+  - SwiftorioGameBundle/UnitTests (0.0.1):
+    - PathKit
+    - SwiftorioDi
     - SwiftorioFoundation
     - SwiftorioUnitTestsFoundation
-  - SwiftorioFoundation (0.0.1)
-  - SwiftorioFoundation/UnitTests (0.0.1):
+  - SwiftorioLocalization (0.0.1):
+    - INIParser
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioGameBundle
+  - SwiftorioLocalization/UnitTests (0.0.1):
+    - INIParser
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioGameBundle
     - SwiftorioUnitTestsFoundation
   - SwiftorioRichText (0.0.1):
     - SwiftorioDi
@@ -38,7 +60,9 @@ PODS:
     - SwiftorioFoundation
 
 DEPENDENCIES:
+  - INIParser (from `/Users/razinov/src/Perfect-INIParser`)
   - lua4swift (from `https://github.com/weyhan/lua4swift`)
+  - PathKit
   - SwiftorioBlueprints (from `.`)
   - SwiftorioBlueprints/UnitTests (from `.`)
   - SwiftorioDataRaw (from `.`)
@@ -47,11 +71,21 @@ DEPENDENCIES:
   - SwiftorioDi/UnitTests (from `.`)
   - SwiftorioFoundation (from `.`)
   - SwiftorioFoundation/UnitTests (from `.`)
+  - SwiftorioGameBundle (from `.`)
+  - SwiftorioGameBundle/UnitTests (from `.`)
+  - SwiftorioLocalization (from `.`)
+  - SwiftorioLocalization/UnitTests (from `.`)
   - SwiftorioRichText (from `.`)
   - SwiftorioRichText/UnitTests (from `.`)
   - SwiftorioUnitTestsFoundation (from `PrivateFrameworks/UnitTestsFoundation`)
 
+SPEC REPOS:
+  trunk:
+    - PathKit
+
 EXTERNAL SOURCES:
+  INIParser:
+    :path: "/Users/razinov/src/Perfect-INIParser"
   lua4swift:
     :git: https://github.com/weyhan/lua4swift
   SwiftorioBlueprints:
@@ -61,6 +95,10 @@ EXTERNAL SOURCES:
   SwiftorioDi:
     :path: "."
   SwiftorioFoundation:
+    :path: "."
+  SwiftorioGameBundle:
+    :path: "."
+  SwiftorioLocalization:
     :path: "."
   SwiftorioRichText:
     :path: "."
@@ -73,14 +111,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/weyhan/lua4swift
 
 SPEC CHECKSUMS:
+  INIParser: f801bec6ba8085f6e9c8fa7c6d3b65853a08f0c9
   lua4swift: ab22d4276eb6ab444ae7800c76c3beccbc136e3c
+  PathKit: 364e0de7fb5adb142aecab4e112187e5548fc4b6
   SwiftorioBlueprints: 7cec62af1909e9b4b1a13c6e63bc31445b9a3d4c
   SwiftorioDataRaw: 03e9328f081c670bbf8bb507802da1747bdbd19d
-  SwiftorioDi: c058833fb701f60e9ec47b9dd87292d9b703a709
-  SwiftorioFoundation: 183878416faaa29782839c300834523b4c794374
+  SwiftorioDi: 2f6dbf79c16ac8f1753cb7ab22795557d1c01687
+  SwiftorioFoundation: 4ff3e05f4db3441db8e5a874d5824f03ac4b1a14
+  SwiftorioGameBundle: 9c60f3de35f3bc4338ccb0b068f8f3ea541d8dee
+  SwiftorioLocalization: 2f93b278c87879b59f21c440d12650b3a7923183
   SwiftorioRichText: fb8c66a168a7bc1413eff3944150e9203cd9face
   SwiftorioUnitTestsFoundation: 63d985a7859f7134c4bd0562aec954969ad300de
 
-PODFILE CHECKSUM: d9752181c381c2db55d212dfc87f1e5c6910c799
+PODFILE CHECKSUM: 1abecfc82c64c2c11b0fdad143b033da955a050c
 
 COCOAPODS: 1.9.0.beta.2

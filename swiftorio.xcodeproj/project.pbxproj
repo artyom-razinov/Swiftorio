@@ -494,7 +494,11 @@
 					"@executable_path/SwiftorioDi/",
 					"@executable_path/SwiftorioFoundation/",
 					"@executable_path/SwiftorioRichText/",
+					"@executable_path/SwiftorioGameBundle/",
+					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/lua4swift/",
+					"@executable_path/INIParser/",
+					"@executable_path/PathKit/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -515,7 +519,11 @@
 					"@executable_path/SwiftorioDi/",
 					"@executable_path/SwiftorioFoundation/",
 					"@executable_path/SwiftorioRichText/",
+					"@executable_path/SwiftorioGameBundle/",
+					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/lua4swift/",
+					"@executable_path/INIParser/",
+					"@executable_path/PathKit/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -538,7 +546,11 @@
 					"@executable_path/SwiftorioDi/",
 					"@executable_path/SwiftorioFoundation/",
 					"@executable_path/SwiftorioRichText/",
+					"@executable_path/SwiftorioGameBundle/",
+					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/lua4swift/",
+					"@executable_path/INIParser/",
+					"@executable_path/PathKit/",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -562,7 +574,11 @@
 					"@executable_path/SwiftorioDi/",
 					"@executable_path/SwiftorioFoundation/",
 					"@executable_path/SwiftorioRichText/",
+					"@executable_path/SwiftorioGameBundle/",
+					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/lua4swift/",
+					"@executable_path/INIParser/",
+					"@executable_path/PathKit/",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

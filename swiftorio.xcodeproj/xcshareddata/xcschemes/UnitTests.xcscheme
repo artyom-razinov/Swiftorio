@@ -62,6 +62,36 @@
                ReferencedContainer = "container:Pods/SwiftorioFoundation.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1DCA2A6569995962A534FC48F95D5771"
+               BuildableName = "SwiftorioGameBundle-Unit-UnitTests.xctest"
+               BlueprintName = "SwiftorioGameBundle-Unit-UnitTests"
+               ReferencedContainer = "container:Pods/SwiftorioGameBundle.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8A931D15A433C74414DA3B9F5CE87944"
+               BuildableName = "SwiftorioLocalization-Unit-UnitTests.xctest"
+               BlueprintName = "SwiftorioLocalization-Unit-UnitTests"
+               ReferencedContainer = "container:Pods/SwiftorioLocalization.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5943E47D51F5F3D0B19D321109058686"
+               BuildableName = "SwiftorioRichText-Unit-UnitTests.xctest"
+               BlueprintName = "SwiftorioRichText-Unit-UnitTests"
+               ReferencedContainer = "container:Pods/SwiftorioRichText.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

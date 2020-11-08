@@ -1,5 +1,3 @@
-import SwiftorioFoundation
-
 public final class DependencyInjectionImpl: DependencyInjection {
     private var dependencies = [HashableType: RegisteredDependency]()
     private let recursiveLock = NSRecursiveLock()
@@ -33,21 +31,21 @@ public final class DependencyInjectionImpl: DependencyInjection {
                             
                             return instance
                         } catch {
-                            throw ErrorString("Failed to resolve \(T.self): \(error)")
+                            throw DiError("Failed to resolve \(T.self): \(error)")
                         }
                     }
                 case .unique:
                     return try registeredDependency.factory(nestedDependencyResolver)
                 }
             } else {
-                throw ErrorString("\(T.self) was not registered in DI")
+                throw DiError("\(T.self) was not registered in DI")
             }
         }
         
         if let typedInstance = instance as? T {
             return typedInstance
         } else {
-            throw ErrorString(
+            throw DiError(
                 "Internal error. Expected to resolve \(T.self), but resolved \(type(of: instance))"
             )
         }
