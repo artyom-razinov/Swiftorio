@@ -1,4 +1,4 @@
-public final class Item: Codable {
+public final class Item: Codable, ItemProtocol {
     public let icon: FileName?
     public let stackSize: Integer?
     public let icons: Icons?

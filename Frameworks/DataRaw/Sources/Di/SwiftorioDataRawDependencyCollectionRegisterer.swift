@@ -10,6 +10,12 @@ public final class SwiftorioDataRawDependencyCollectionRegisterer: DependencyCol
         di.register(type: TemporaryDirectoryPathProvider.self) { _ in
             NsTemporaryDirectoryPathProvider()
         }
+        
+        di.register(type: DataRawProvider.self) { di in
+            DataRawProviderImpl(
+                dataRawJsonStringProvider: try di.resolve()
+            )
+        }
         di.register(type: DataRawJsonStringProvider.self) { di in
             CachingDataRawJsonStringProvider(
                 dataRawJsonStringProvider: LoadingFromLuaDataRawJsonStringProvider(

@@ -26,6 +26,13 @@ PODS:
   - SwiftorioFoundation (0.0.1)
   - SwiftorioFoundation/UnitTests (0.0.1):
     - SwiftorioUnitTestsFoundation
+  - SwiftorioRichText (0.0.1):
+    - SwiftorioDi
+    - SwiftorioFoundation
+  - SwiftorioRichText/UnitTests (0.0.1):
+    - SwiftorioDi
+    - SwiftorioFoundation
+    - SwiftorioUnitTestsFoundation
   - SwiftorioUnitTestsFoundation (0.0.1):
     - SwiftorioDi
     - SwiftorioFoundation
@@ -40,6 +47,8 @@ DEPENDENCIES:
   - SwiftorioDi/UnitTests (from `.`)
   - SwiftorioFoundation (from `.`)
   - SwiftorioFoundation/UnitTests (from `.`)
+  - SwiftorioRichText (from `.`)
+  - SwiftorioRichText/UnitTests (from `.`)
   - SwiftorioUnitTestsFoundation (from `PrivateFrameworks/UnitTestsFoundation`)
 
 EXTERNAL SOURCES:
@@ -52,6 +61,8 @@ EXTERNAL SOURCES:
   SwiftorioDi:
     :path: "."
   SwiftorioFoundation:
+    :path: "."
+  SwiftorioRichText:
     :path: "."
   SwiftorioUnitTestsFoundation:
     :path: PrivateFrameworks/UnitTestsFoundation
@@ -67,8 +78,9 @@ SPEC CHECKSUMS:
   SwiftorioDataRaw: 03e9328f081c670bbf8bb507802da1747bdbd19d
   SwiftorioDi: c058833fb701f60e9ec47b9dd87292d9b703a709
   SwiftorioFoundation: 183878416faaa29782839c300834523b4c794374
+  SwiftorioRichText: fb8c66a168a7bc1413eff3944150e9203cd9face
   SwiftorioUnitTestsFoundation: 63d985a7859f7134c4bd0562aec954969ad300de
 
-PODFILE CHECKSUM: bb2f215551b8d10442c2c473cb12faf0d30ddf65
+PODFILE CHECKSUM: d9752181c381c2db55d212dfc87f1e5c6910c799
 
 COCOAPODS: 1.9.0.beta.2

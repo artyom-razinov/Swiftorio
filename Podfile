@@ -18,7 +18,8 @@ def swiftorio_pod_names()
     'SwiftorioBlueprints',
     'SwiftorioDataRaw',
     'SwiftorioDi',
-    'SwiftorioFoundation'
+    'SwiftorioFoundation',
+    'SwiftorioRichText'
   ]
 end
 
