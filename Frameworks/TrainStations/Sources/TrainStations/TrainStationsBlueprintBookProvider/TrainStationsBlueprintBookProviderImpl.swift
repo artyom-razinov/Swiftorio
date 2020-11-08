@@ -1,18 +1,22 @@
 import SwiftorioBlueprints
 import SwiftorioDataRaw
 import SwiftorioLocalization
+import SwiftorioRichText
 
 public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprintBookProvider {
     private let version = 281474976710656
     private let dataRawProvider: DataRawProvider
     private let localizer: Localizer
+    private let richTextBuilder: RichTextBuilder
     
     public init(
         dataRawProvider: DataRawProvider,
-        localizer: Localizer)
+        localizer: Localizer,
+        richTextBuilder: RichTextBuilder)
     {
         self.dataRawProvider = dataRawProvider
         self.localizer = localizer
+        self.richTextBuilder = richTextBuilder
     }
     
     public func trainStationsBlueprintBook() throws -> SwiftorioBlueprints.BlueprintBook {
@@ -96,6 +100,8 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     func providerTrainStopBlueprint(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.Blueprint {
         return trainStopBlueprint(
             typedTrainCargoEntity: typedTrainCargoEntity,
+            stationType: "provider",
+            textColor: .red,
             stationColor: Color(r: 1, g: 0, b: 0, a: 1),
             chestId: "logistic-chest-passive-provider"
         )
@@ -104,18 +110,53 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     func requesterTrainStopBlueprint(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.Blueprint {
         return trainStopBlueprint(
             typedTrainCargoEntity: typedTrainCargoEntity,
+            stationType: "requester",
+            textColor: .blue,
             stationColor: Color(r: 0, g: 0, b: 1, a: 1),
             chestId: "logistic-chest-requester"
         )
     }
     
+    func imgTagClass(trainCargoEntityType: TrainCargoEntityType) -> ImgTagClass {
+        switch trainCargoEntityType {
+        case .fluid:
+            return .fluid
+        case .item:
+            return .item
+        }
+    }
+    
+    func cargoImage(typedTrainCargoEntity: TypedTrainCargoEntity) -> ImgTag {
+        return ImgTag(
+            class: imgTagClass(trainCargoEntityType: typedTrainCargoEntity.entityType),
+            name: typedTrainCargoEntity.id
+        )
+    }
+    func chestImage(chestId: String) -> ImgTag {
+        return ImgTag(
+            class: .item,
+            name: chestId
+        )
+    }
+    
     func trainStopBlueprint(
         typedTrainCargoEntity: TypedTrainCargoEntity,
+        stationType: String,
+        textColor: ColorTextModifierColorAlias,
         stationColor: Color,
         chestId: String)
         -> SwiftorioBlueprints.Blueprint
     {
-        let stationName = "FIXME"
+        let cargoImage = self.cargoImage(typedTrainCargoEntity: typedTrainCargoEntity)
+        
+        let stationName = richTextBuilder.buildString {
+            $0.image(cargoImage)
+                + $0.image(chestImage(chestId: chestId))
+                + " "
+                + $0.color(textColor) {
+                    $0.text("\(typedTrainCargoEntity.localizedName) \(stationType)")
+                }
+        }
         
         return blueprint(
             label: "FIXME",

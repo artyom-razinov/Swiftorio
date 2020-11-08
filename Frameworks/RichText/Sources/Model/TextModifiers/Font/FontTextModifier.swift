@@ -1,13 +1,13 @@
 public final class FontTextModifier: TextModifier {
     public let fontName: String
-    public let textModifierClosureType: TextModifierClosureType
+    public let tagClosureType: TagClosureType
     
     public init(
         fontName: String,
-        textModifierClosureType: TextModifierClosureType = .slash)
+        tagClosureType: TagClosureType = .slash)
     {
         self.fontName = fontName
-        self.textModifierClosureType = textModifierClosureType
+        self.tagClosureType = tagClosureType
     }
     
     // MARK: - TextModifier

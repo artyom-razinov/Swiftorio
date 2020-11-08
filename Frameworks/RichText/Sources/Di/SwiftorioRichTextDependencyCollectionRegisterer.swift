@@ -9,5 +9,8 @@ public final class SwiftorioRichTextDependencyCollectionRegisterer: BaseNestingD
     }
     
     public override func registerTopLevelDependencies(di: DependencyRegisterer) {
+        di.register(type: RichTextBuilder.self) { di in
+            return RichTextBuilderImpl()
+        }
     }
 }

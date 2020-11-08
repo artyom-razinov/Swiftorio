@@ -16,7 +16,8 @@ public final class SwiftorioTrainStationsDependencyCollectionRegisterer: BaseNes
         di.register(type: TrainStationsBlueprintBookProvider.self) { di in
             TrainStationsBlueprintBookProviderImpl(
                 dataRawProvider: try di.resolve(),
-                localizer: try di.resolve()
+                localizer: try di.resolve(),
+                richTextBuilder: try di.resolve()
             )
         }
     }

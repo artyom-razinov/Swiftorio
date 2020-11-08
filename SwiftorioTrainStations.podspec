@@ -6,4 +6,5 @@ Swiftorio::FeatureSpec.new do |s|
   s.dependency 'SwiftorioLocalization'
   s.dependency 'SwiftorioDataRaw'
   s.dependency 'SwiftorioBlueprints'
+  s.dependency 'SwiftorioRichText'
 end

@@ -1,13 +1,13 @@
 public struct ColorTextModifier: TextModifier {
     public let color: ColorTextModifierColor
-    public let textModifierClosureType: TextModifierClosureType
+    public let tagClosureType: TagClosureType
     
     public init(
         color: ColorTextModifierColor,
-        textModifierClosureType: TextModifierClosureType = .slash)
+        tagClosureType: TagClosureType = .slash)
     {
         self.color = color
-        self.textModifierClosureType = textModifierClosureType
+        self.tagClosureType = tagClosureType
     }
     
     // MARK: - TextModifier
