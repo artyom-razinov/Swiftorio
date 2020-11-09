@@ -66,8 +66,28 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
             entitiesByCategory[entity.category, default: []].append(entity)
         }
         
-        return entitiesByCategory.map { (category, typedTrainCargoEntities) in
-            categoryBook(
+        struct CategoryBookSettings {
+            let name: String
+            let icon: String
+            let category: TrainCargoEntityCategory
+        }
+        
+        let categoryBooksSettings: [CategoryBookSettings] = [
+            CategoryBookSettings(
+                name: "Fluids",
+                icon: "crude-oil",
+                category: .fluid
+            )
+        ]
+        
+        return try categoryBooksSettings.map { categoryBookSettings in
+            let category = categoryBookSettings.category
+            
+            let typedTrainCargoEntities = try entitiesByCategory[category].unwrapOrThrow(
+                message: "Category not found: \(category)"
+            )
+            
+            return categoryBook(
                 category: category,
                 typedTrainCargoEntities: typedTrainCargoEntities
             )
@@ -132,6 +152,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
             name: typedTrainCargoEntity.id
         )
     }
+    
     func chestImage(chestId: String) -> ImgTag {
         return ImgTag(
             class: .item,
@@ -159,7 +180,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
         
         return blueprint(
-            label: "FIXME",
+            label: stationName,
             entities: [
                 entity(
                     entity_number: 1,
@@ -308,7 +329,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     private func typedTrainCargoEntities() throws -> [TypedTrainCargoEntity] {
         let dataRaw = try dataRawProvider.dataRaw()
         
-        let allItemsDictionaries: [[String: ItemProtocol]] = [
+        let allItemsDictionaries: [[String: Item]] = [
             dataRaw.ammo,
             dataRaw.capsule,
             dataRaw.gun,
@@ -326,37 +347,57 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         var trainCargoEntities: [TypedTrainCargoEntity] = []
         
         trainCargoEntities.append(
-            contentsOf: try allItems.map { itemWithId in
-                TypedTrainCargoEntity.item(
-                    ItemTrainCargoEntity(
-                        id: itemWithId.id,
-                        localizedName: try localizer.localize(
-                            locale: .en,
-                            section: .item_name,
-                            id: itemWithId.id
-                        ),
-                        category: .other
+            contentsOf: try allItems
+                .filter { itemWithId in
+                    !itemWithId.value.flags.contains("hidden") // TODO: Generate enum for flags
+                }
+                .map { itemWithId in
+                    TypedTrainCargoEntity.item(
+                        ItemTrainCargoEntity(
+                            id: itemWithId.id,
+                            localizedName: try localizedName(itemWithId: itemWithId),
+                            category: .other,
+                            item: itemWithId.value
+                        )
                     )
-                )
-            }
+                }
         )
         
         trainCargoEntities.append(
-            contentsOf: try fluids.map { itemWithId in
-                TypedTrainCargoEntity.fluid(
-                    FluidTrainCargoEntity(
-                        id: itemWithId.id,
-                        localizedName: try localizer.localize(
-                            locale: .en,
-                            section: .fluid_name,
-                            id: itemWithId.id
+            contentsOf: try fluids
+                .filter { itemWithId in
+                    !itemWithId.value.hidden
+                }
+                .map { itemWithId in
+                    TypedTrainCargoEntity.fluid(
+                        FluidTrainCargoEntity(
+                            id: itemWithId.id,
+                            localizedName: try localizer.localize(
+                                locale: .en,
+                                sectionName: .fluid_name,
+                                idInSection: itemWithId.id
+                            ),
+                            fluid: itemWithId.value
                         )
                     )
-                )
-            }
+                }
         )
         
         return trainCargoEntities
+    }
+    
+    private func localizedName(itemWithId: ValueWithId<Item>) throws -> String {
+        if let localisedName = itemWithId.value.localisedName {
+            return try localizer.localize(
+                locale: .en,
+                fullId: localisedName.id
+            )
+        } else {
+            return try localizer.localize(
+                locale: .en,
+                idInAnySection: itemWithId.id
+            )
+        }
     }
     
     private func book(label: String, description: String? = nil, blueprints: [IndexedBlueprintOrBook]) -> SwiftorioBlueprints.BlueprintBook {

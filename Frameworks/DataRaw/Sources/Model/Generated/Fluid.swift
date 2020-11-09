@@ -6,6 +6,7 @@ public final class Fluid: Codable {
     public let flowToEnergyRatio: Float?
     public let order: String?
     public let maxTemperature: Float
+    public let hidden: Bool
     
     enum CodingKeys: String, CodingKey {
         case icon
@@ -15,6 +16,7 @@ public final class Fluid: Codable {
         case flowToEnergyRatio = "flow_to_energy_ratio"
         case order
         case maxTemperature = "max_temperature"
+        case hidden
     }
     
     public init(from decoder: Decoder) throws {
@@ -26,6 +28,7 @@ public final class Fluid: Codable {
         self.flowToEnergyRatio = try container.decodeIfPresent(Float.self, forKey: .flowToEnergyRatio)
         self.order = try container.decodeIfPresent(String.self, forKey: .order)
         self.maxTemperature = try container.decode(Float.self, forKey: .maxTemperature)
+        self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -37,5 +40,9 @@ public final class Fluid: Codable {
         try container.encode(flowToEnergyRatio, forKey: .flowToEnergyRatio)
         try container.encode(order, forKey: .order)
         try container.encode(maxTemperature, forKey: .maxTemperature)
+        
+        if hidden {
+            try container.encode(hidden, forKey: .hidden)
+        }
     }
 }

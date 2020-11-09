@@ -1,4 +1,4 @@
-public final class Entity: Codable, EntityProtocol {
+open class Entity: Codable {
     public let weight: Float?
     public let selectionBox: Rect?
     public let fastReplaceableGroup: String?
@@ -15,7 +15,7 @@ public final class Entity: Codable, EntityProtocol {
         case icon
     }
     
-    public init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.weight = try container.decodeIfPresent(Float.self, forKey: .weight) ?? 1
         self.selectionBox = try container.decodeIfPresent(Rect.self, forKey: .selectionBox)

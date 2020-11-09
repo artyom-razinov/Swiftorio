@@ -1,2 +1,2 @@
-public final class RoboportEquipment: Codable, EquipmentProtocol {
+public final class RoboportEquipment: Equipment {
 }

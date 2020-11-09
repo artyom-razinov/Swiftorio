@@ -1,2 +1,2 @@
-public final class GeneratorEquipment: Codable, EquipmentProtocol {
+public final class GeneratorEquipment: Equipment {
 }

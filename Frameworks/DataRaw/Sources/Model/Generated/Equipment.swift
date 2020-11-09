@@ -1,2 +1,2 @@
-public final class Equipment: Codable, EquipmentProtocol {
+open class Equipment: Codable {
 }

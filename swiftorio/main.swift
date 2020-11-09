@@ -7,6 +7,10 @@ withDi { di in
     let provider = try di.resolve() as TrainStationsBlueprintBookProvider
     
     let book = try provider.trainStationsBlueprintBook()
+    
+    let encoder = try di.resolve() as BlueprintToBlueprintStringEncoder
+    
+    print(try encoder.encodeToBlueprintString(blueprint: book))
 }
 
 //

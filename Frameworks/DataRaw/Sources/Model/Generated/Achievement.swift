@@ -1,4 +1,4 @@
-public final class Achievement: Codable {
+open class Achievement: Codable {
     public let icon: FileName
     public let order: String
     

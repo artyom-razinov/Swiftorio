@@ -1,8 +1,20 @@
 public protocol Localizer {
     func localize(
         locale: Locale,
-        section: LocalizationSectionName,
-        id: String)
+        fullId: String)
+        throws
+        -> String
+    
+    func localize(
+        locale: Locale,
+        sectionName: LocalizationSectionName,
+        idInSection: String)
+        throws
+        -> String
+    
+    func localize(
+        locale: Locale,
+        idInAnySection: String)
         throws
         -> String
 }

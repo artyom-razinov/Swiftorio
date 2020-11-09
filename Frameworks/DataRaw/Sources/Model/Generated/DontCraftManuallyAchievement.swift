@@ -1,9 +1,1 @@
-public final class DontCraftManuallyAchievement: Codable, AchievementProtocol {
-    public let icon: FileName
-    public let order: String
-    
-    enum CodingKeys: String, CodingKey {
-        case icon
-        case order
-    }
-}
+public final class DontCraftManuallyAchievement: Achievement {}

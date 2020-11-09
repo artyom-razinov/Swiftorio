@@ -1,2 +1,2 @@
-public final class BeltImmunityEquipment: Codable, EquipmentProtocol {
+public final class BeltImmunityEquipment: Equipment {
 }

@@ -1,2 +1,2 @@
-public final class NightVisionEquipment: Codable, EquipmentProtocol {
+public final class NightVisionEquipment: Equipment {
 }

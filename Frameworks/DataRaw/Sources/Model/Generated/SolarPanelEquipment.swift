@@ -1,2 +1,2 @@
-public final class SolarPanelEquipment: Codable, EquipmentProtocol {
+public final class SolarPanelEquipment: Equipment {
 }

@@ -1,2 +1,2 @@
-public final class EnergyShieldEquipment: Codable, EquipmentProtocol {
+public final class EnergyShieldEquipment: Equipment {
 }

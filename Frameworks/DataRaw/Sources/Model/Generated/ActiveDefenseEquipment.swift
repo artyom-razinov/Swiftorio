@@ -1,2 +1,2 @@
-public final class ActiveDefenseEquipment: Codable, EquipmentProtocol {
+public final class ActiveDefenseEquipment: Equipment {
 }

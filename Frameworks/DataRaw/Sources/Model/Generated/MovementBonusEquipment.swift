@@ -1,2 +1,2 @@
-public final class MovementBonusEquipment: Codable, EquipmentProtocol {
+public final class MovementBonusEquipment: Equipment {
 }

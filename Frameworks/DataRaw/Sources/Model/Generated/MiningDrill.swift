@@ -1,11 +1,4 @@
-public final class MiningDrill: Codable, EntityWithHealthProtocol {
-    public let weight: Float?
-    public let selectionBox: Rect?
-    public let fastReplaceableGroup: String?
-    public let minable: Minable?
-    public let collisionBox: Rect?
-    public let icon: FileName?
-    public let maxHealth: Float
+public final class MiningDrill: EntityWithHealth {
     public let resourceCategories: ResourceCategories
     public let miningPower: Float?
     public let miningSpeed: Float
@@ -23,29 +16,19 @@ public final class MiningDrill: Codable, EntityWithHealthProtocol {
         case miningSpeed = "mining_speed"
     }
     
-    public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.weight = try container.decodeIfPresent(Float.self, forKey: .weight) ?? 1
-        self.selectionBox = try container.decodeIfPresent(Rect.self, forKey: .selectionBox)
-        self.fastReplaceableGroup = try container.decodeIfPresent(String.self, forKey: .fastReplaceableGroup)
-        self.minable = try container.decodeIfPresent(Minable.self, forKey: .minable)
-        self.collisionBox = try container.decodeIfPresent(Rect.self, forKey: .collisionBox)
-        self.icon = try container.decodeIfPresent(FileName.self, forKey: .icon)
-        self.maxHealth = try container.decode(Float.self, forKey: .maxHealth)
         self.resourceCategories = try container.decode(ResourceCategories.self, forKey: .resourceCategories)
         self.miningPower = try container.decodeIfPresent(Float.self, forKey: .miningPower)
         self.miningSpeed = try container.decode(Float.self, forKey: .miningSpeed)
+        
+        try super.init(from: decoder)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(weight, forKey: .weight)
-        try container.encode(selectionBox, forKey: .selectionBox)
-        try container.encode(fastReplaceableGroup, forKey: .fastReplaceableGroup)
-        try container.encode(minable, forKey: .minable)
-        try container.encode(collisionBox, forKey: .collisionBox)
-        try container.encode(icon, forKey: .icon)
-        try container.encode(maxHealth, forKey: .maxHealth)
         try container.encode(resourceCategories, forKey: .resourceCategories)
         try container.encode(miningPower, forKey: .miningPower)
         try container.encode(miningSpeed, forKey: .miningSpeed)
