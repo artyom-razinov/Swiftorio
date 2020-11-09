@@ -1,8 +1,11 @@
 import SwiftorioFoundation
-import Gzip
+import SwiftorioZlib
 
 public final class BlueprintFromBlueprintStringDecoderImpl: BlueprintFromBlueprintStringDecoder {
-    public init() {
+    private let algorithmPerformer: AlgorithmPerformer
+    
+    public init(algorithmPerformer: AlgorithmPerformer) {
+        self.algorithmPerformer = algorithmPerformer
     }
     
     public func decodeFromBlueprintString(string: String) throws -> BlueprintOrBook {
@@ -23,8 +26,15 @@ public final class BlueprintFromBlueprintStringDecoderImpl: BlueprintFromBluepri
             message: "Failed to decode json data from base64 encoding"
         )
         
-        let decodedJsonData = try decodedZippedJsonData.gunzipped()
+        let decodedJsonData = decodedZippedJsonData //try decodedZippedJsonData.gunzipped()
         
         return try JSONDecoder().decode(BlueprintOrBook.self, from: decodedJsonData)
+    }
+    
+    private func decompressed(data: Data) throws -> Data {
+        return try algorithmPerformer.perform(
+            algorithm: InflateAlgorithm(),
+            data: data
+        )
     }
 }

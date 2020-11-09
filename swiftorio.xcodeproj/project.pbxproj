@@ -437,11 +437,10 @@
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/SwiftorioTrainStations/",
+					"@executable_path/SwiftorioZlib/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
-					"@executable_path/DataCompression/",
-					"@executable_path/GzipSwift/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -465,11 +464,10 @@
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/SwiftorioTrainStations/",
+					"@executable_path/SwiftorioZlib/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
-					"@executable_path/DataCompression/",
-					"@executable_path/GzipSwift/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -495,11 +493,10 @@
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/SwiftorioTrainStations/",
+					"@executable_path/SwiftorioZlib/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
-					"@executable_path/DataCompression/",
-					"@executable_path/GzipSwift/",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,11 +523,10 @@
 					"@executable_path/SwiftorioGameBundle/",
 					"@executable_path/SwiftorioLocalization/",
 					"@executable_path/SwiftorioTrainStations/",
+					"@executable_path/SwiftorioZlib/",
 					"@executable_path/lua4swift/",
 					"@executable_path/INIParser/",
 					"@executable_path/PathKit/",
-					"@executable_path/DataCompression/",
-					"@executable_path/GzipSwift/",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

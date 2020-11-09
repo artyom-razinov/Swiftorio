@@ -102,6 +102,16 @@
                ReferencedContainer = "container:Pods/SwiftorioTrainStations.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3DFF5C4C4C39D76F58320D36B5248ED8"
+               BuildableName = "SwiftorioZlib-Unit-UnitTests.xctest"
+               BlueprintName = "SwiftorioZlib-Unit-UnitTests"
+               ReferencedContainer = "container:Pods/SwiftorioZlib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

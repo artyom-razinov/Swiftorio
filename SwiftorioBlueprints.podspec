@@ -4,5 +4,5 @@ Swiftorio::FeatureSpec.new do |s|
   s.name = 'SwiftorioBlueprints'
   
   s.dependency 'SwiftorioDataRaw'
-  s.dependency 'GzipSwift'
+  s.dependency 'SwiftorioZlib'
 end

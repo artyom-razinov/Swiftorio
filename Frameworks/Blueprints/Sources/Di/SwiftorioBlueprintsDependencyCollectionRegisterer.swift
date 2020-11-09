@@ -1,10 +1,12 @@
 import SwiftorioDi
 import SwiftorioDataRaw
+import SwiftorioZlib
 
 public final class SwiftorioBlueprintsDependencyCollectionRegisterer: BaseNestingDependencyCollectionRegisterer {
     public override func nestedRegisterers() -> [DependencyCollectionRegisterer] {
         return [
-            SwiftorioDataRawDependencyCollectionRegisterer()
+            SwiftorioDataRawDependencyCollectionRegisterer(),
+            SwiftorioZlibDependencyCollectionRegisterer()
         ]
     }
     
@@ -13,10 +15,14 @@ public final class SwiftorioBlueprintsDependencyCollectionRegisterer: BaseNestin
             BlueprintToJsonStringEncoderImpl()
         }
         di.register(type: BlueprintToBlueprintStringEncoder.self) { di in
-            BlueprintToBlueprintStringEncoderImpl()
+            BlueprintToBlueprintStringEncoderImpl(
+                algorithmPerformer: try di.resolve()
+            )
         }
         di.register(type: BlueprintFromBlueprintStringDecoder.self) { di in
-            BlueprintFromBlueprintStringDecoderImpl()
+            BlueprintFromBlueprintStringDecoderImpl(
+                algorithmPerformer: try di.resolve()
+            )
         }
     }
 }

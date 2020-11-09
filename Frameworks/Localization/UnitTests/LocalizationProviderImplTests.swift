@@ -10,7 +10,7 @@ final class LocalizationProviderImplTests: TestCase {
             let localization = try provider.localization(locale: .en)
             
             XCTAssertEqual(
-                try localization.localize(section: .fluid_name, id: "petroleum-gas"),
+                try localization.localize(sectionName: .fluid_name, idInSection: "petroleum-gas"),
                 "Petroleum gas"
             )
         }
