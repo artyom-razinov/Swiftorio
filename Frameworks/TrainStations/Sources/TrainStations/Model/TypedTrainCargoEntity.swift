@@ -16,8 +16,8 @@ public enum TypedTrainCargoEntity: TrainCargoEntity {
         return associatedValue.entityType
     }
     
-    public var itemOrFluid: ItemOrFluid {
-        return associatedValue.itemOrFluid
+    public var itemOrFluidPrototype: ItemOrFluidPrototype {
+        return associatedValue.itemOrFluidPrototype
     }
     
     private var associatedValue: TrainCargoEntity {

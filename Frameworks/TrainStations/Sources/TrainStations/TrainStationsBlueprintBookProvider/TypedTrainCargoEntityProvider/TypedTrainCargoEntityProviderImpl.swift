@@ -16,7 +16,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
     public func typedTrainCargoEntities() throws -> [TypedTrainCargoEntity] {
         let dataRaw = try dataRawProvider.dataRaw()
         
-        let allItemsDictionaries: [[String: Item]] = [
+        let allItemsDictionaries: [[String: ItemPrototype]] = [
             dataRaw.ammo,
             dataRaw.capsule,
             dataRaw.gun,
@@ -29,7 +29,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
             ValueWithId.valuesWithId(dictionary: $0)
         }
         
-        let fluids: [ValueWithId<Fluid>] = ValueWithId.valuesWithId(dictionary: dataRaw.fluid)
+        let fluids: [ValueWithId<FluidPrototype>] = ValueWithId.valuesWithId(dictionary: dataRaw.fluid)
         
         var trainCargoEntities: [TypedTrainCargoEntity] = []
         
@@ -40,7 +40,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                         ItemTrainCargoEntity(
                             id: itemWithId.id,
                             localizedName: try localizedName(itemWithId: itemWithId),
-                            item: itemWithId.value
+                            itemPrototype: itemWithId.value
                         )
                     )
                 } catch {
@@ -60,7 +60,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                                 sectionName: .fluid_name,
                                 idInSection: itemWithId.id
                             ),
-                            fluid: itemWithId.value
+                            fluidPrototype: itemWithId.value
                         )
                     )
                 } catch {
@@ -72,7 +72,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
         return trainCargoEntities
     }
     
-    private func localizedName(itemWithId: ValueWithId<Item>) throws -> String {
+    private func localizedName(itemWithId: ValueWithId<ItemPrototype>) throws -> String {
         if let localisedName = itemWithId.value.localisedName {
             return try localizer.localize(
                 locale: .en,

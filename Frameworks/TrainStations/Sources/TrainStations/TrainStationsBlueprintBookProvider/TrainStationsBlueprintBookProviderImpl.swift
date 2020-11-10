@@ -80,12 +80,12 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         rhs: TypedTrainCargoEntity)
         -> Bool
     {
-        switch (lhs.itemOrFluid.order, rhs.itemOrFluid.order) {
+        switch (lhs.itemOrFluidPrototype.order, rhs.itemOrFluidPrototype.order) {
         case let (.some(lhs), .some(rhs)):
             return lhs < rhs
-        case let (.none, .some):
+        case (.none, .some):
             return true
-        case let (.some, .none):
+        case (.some, .none):
             return false
         case (.none, .none):
             return lhs.id < rhs.id

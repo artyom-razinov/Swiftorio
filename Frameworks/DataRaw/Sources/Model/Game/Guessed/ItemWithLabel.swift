@@ -1,1 +1,1 @@
-open class ItemWithLabel: Item {}
+open class ItemWithLabelPrototype: ItemPrototype {}

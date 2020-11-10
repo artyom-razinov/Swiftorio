@@ -77,7 +77,7 @@ private final class Context {
             stream.next_out = output.advanced(by: Int(stream.total_out))
             stream.avail_out = uInt(outputCount - stream.total_out)
             
-            let status = try algorithm.performOperationOnStreamInsideLoop(stream: &stream)
+            let status = algorithm.performOperationOnStreamInsideLoop(stream: &stream)
             
             stream.next_out = nil
             stream.next_in = nil

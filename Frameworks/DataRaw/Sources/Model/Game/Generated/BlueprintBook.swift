@@ -1,2 +1,0 @@
-open class BlueprintBook: ItemWithInventory {
-}

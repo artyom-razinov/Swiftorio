@@ -3,10 +3,10 @@ import SwiftorioDataRaw
 public struct FluidTrainCargoEntity: TrainCargoEntity {
     public let id: String
     public let localizedName: String
-    public let fluid: Fluid
+    public let fluidPrototype: FluidPrototype
     
-    public var itemOrFluid: ItemOrFluid {
-        return fluid
+    public var itemOrFluidPrototype: ItemOrFluidPrototype {
+        return fluidPrototype
     }
     
     public var entityType: TrainCargoEntityType {

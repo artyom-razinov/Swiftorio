@@ -8,7 +8,7 @@ public final class FluidTrainCargoCategory: TrainCargoCategory {
         case .item:
             return false
         case .fluid(let fluidTrainCargoEntity):
-            return !fluidTrainCargoEntity.fluid.hidden
+            return !fluidTrainCargoEntity.fluidPrototype.hidden
         }
     }
 }

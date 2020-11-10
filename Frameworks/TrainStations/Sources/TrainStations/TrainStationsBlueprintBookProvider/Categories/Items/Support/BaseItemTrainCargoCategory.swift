@@ -8,7 +8,7 @@ class BaseItemTrainCargoCategory {
     func match(typedTrainCargoEntity: TypedTrainCargoEntity) -> Bool {
         switch typedTrainCargoEntity {
         case .item(let itemTrainCargoEntity):
-            if itemTrainCargoEntity.item.flags.contains("hidden") {
+            if itemTrainCargoEntity.itemPrototype.flags.contains("hidden") {
                 return false
             } else {
                 return match(itemTrainCargoEntity: itemTrainCargoEntity)
