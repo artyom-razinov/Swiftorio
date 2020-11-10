@@ -1,0 +1,1 @@
+typealias ItemTrainCargoCategory = BaseItemTrainCargoCategory & TrainCargoCategory

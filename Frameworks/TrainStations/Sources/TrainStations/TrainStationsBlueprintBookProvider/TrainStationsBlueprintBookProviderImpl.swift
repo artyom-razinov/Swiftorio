@@ -58,31 +58,15 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     private func categoryBooks() throws -> [SwiftorioBlueprints.BlueprintBook] {
         let entities = try typedTrainCargoEntityProvider.typedTrainCargoEntities()
         
-        var entitiesByCategory: [TrainCargoEntityCategory: [TypedTrainCargoEntity]] = [:]
-        entities.forEach { entity in
-            entitiesByCategory[entity.category, default: []].append(entity)
-        }
-        
-        struct CategoryBookSettings {
-            let name: String
-            let icon: String
-            let category: TrainCargoEntityCategory
-        }
-        
-        let categoryBooksSettings: [CategoryBookSettings] = [
-            CategoryBookSettings(
-                name: "Fluids",
-                icon: "crude-oil",
-                category: .fluid
-            )
+        let categories: [TrainCargoCategory] = [
+            RawMaterialsTrainCargoCategory(),
+            FluidTrainCargoCategory()
         ]
         
-        return try categoryBooksSettings.map { categoryBookSettings in
-            let category = categoryBookSettings.category
-            
-            let typedTrainCargoEntities = try entitiesByCategory[category].unwrapOrThrow(
-                message: "Category not found: \(category)"
-            )
+        return categories.map { category in
+            let typedTrainCargoEntities = entities
+                .filter { category.match(typedTrainCargoEntity: $0) }
+                .sorted { lhs, rhs in isOrderedBefore(lhs: lhs, rhs: rhs) }
             
             return categoryBook(
                 category: category,
@@ -91,13 +75,30 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
     }
     
+    private func isOrderedBefore(
+        lhs: TypedTrainCargoEntity,
+        rhs: TypedTrainCargoEntity)
+        -> Bool
+    {
+        switch (lhs.itemOrFluid.order, rhs.itemOrFluid.order) {
+        case let (.some(lhs), .some(rhs)):
+            return lhs < rhs
+        case let (.none, .some):
+            return true
+        case let (.some, .none):
+            return false
+        case (.none, .none):
+            return lhs.id < rhs.id
+        }
+    }
+    
     private func categoryBook(
-        category: TrainCargoEntityCategory,
+        category: TrainCargoCategory,
         typedTrainCargoEntities: [TypedTrainCargoEntity])
         -> SwiftorioBlueprints.BlueprintBook
     {
         return book(
-            label: category.rawValue, // FIXME
+            label: category.name,
             blueprints: indexed(typedTrainCargoEntities.map(entityBook))
         )
     }

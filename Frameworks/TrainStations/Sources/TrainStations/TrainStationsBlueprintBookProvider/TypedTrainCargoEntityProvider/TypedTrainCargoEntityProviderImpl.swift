@@ -34,29 +34,25 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
         var trainCargoEntities: [TypedTrainCargoEntity] = []
         
         trainCargoEntities.append(
-            contentsOf: try allItems
-                .filter { itemWithId in
-                    !itemWithId.value.flags.contains("hidden") // TODO: Generate enum for flags
-                }
-                .map { itemWithId in
-                    TypedTrainCargoEntity.item(
+            contentsOf: allItems.compactMap { itemWithId in
+                do {
+                    return TypedTrainCargoEntity.item(
                         ItemTrainCargoEntity(
                             id: itemWithId.id,
                             localizedName: try localizedName(itemWithId: itemWithId),
-                            category: .other,
                             item: itemWithId.value
                         )
                     )
+                } catch {
+                    return nil
                 }
+            }
         )
         
         trainCargoEntities.append(
-            contentsOf: try fluids
-                .filter { itemWithId in
-                    !itemWithId.value.hidden
-                }
-                .map { itemWithId in
-                    TypedTrainCargoEntity.fluid(
+            contentsOf: fluids.compactMap { itemWithId in
+                do {
+                    return TypedTrainCargoEntity.fluid(
                         FluidTrainCargoEntity(
                             id: itemWithId.id,
                             localizedName: try localizer.localize(
@@ -67,7 +63,10 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                             fluid: itemWithId.value
                         )
                     )
+                } catch {
+                    return nil
                 }
+            }
         )
         
         return trainCargoEntities

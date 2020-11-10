@@ -5,8 +5,8 @@ public struct FluidTrainCargoEntity: TrainCargoEntity {
     public let localizedName: String
     public let fluid: Fluid
     
-    public var category: TrainCargoEntityCategory {
-        return .fluid
+    public var itemOrFluid: ItemOrFluid {
+        return fluid
     }
     
     public var entityType: TrainCargoEntityType {

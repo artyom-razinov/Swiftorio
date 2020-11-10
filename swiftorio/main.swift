@@ -8,9 +8,15 @@ withDi { di in
     
     let book = try provider.trainStationsBlueprintBook()
     
-    let encoder = try di.resolve() as BlueprintToBlueprintStringEncoder
-    
-    print(try encoder.encodeToBlueprintString(blueprint: book))
+    if false {
+        let encoder = try di.resolve() as BlueprintToBlueprintStringEncoder
+        
+        print(try encoder.encodeToBlueprintString(blueprint: book))
+    } else {
+        let encoder = try di.resolve() as BlueprintToJsonStringEncoder
+        
+        print(try encoder.encodeToJsonString(blueprint: book))
+    }
 }
 
 //

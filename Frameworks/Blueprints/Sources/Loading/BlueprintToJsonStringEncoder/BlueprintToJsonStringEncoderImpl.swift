@@ -4,13 +4,13 @@ public final class BlueprintToJsonStringEncoderImpl: BlueprintToJsonStringEncode
     public init() {
     }
     
-    public func encodeToJsonData(blueprint: BlueprintOrBook) throws -> String {
+    public func encodeToJsonString(blueprint: BlueprintOrBook) throws -> String {
         let encoder = JSONEncoder()
         
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         
         let jsonString = String(
-            data: try JSONEncoder().encode(blueprint),
+            data: try encoder.encode(blueprint),
             encoding: .utf8
         )
         

@@ -1,4 +1,4 @@
-open class Item: Codable {
+open class Item: Codable, ItemOrFluid {
     public let icon: FileName?
     public let stackSize: Integer?
     public let icons: Icons?

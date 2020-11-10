@@ -1,4 +1,4 @@
-public final class Fluid: Codable {
+public final class Fluid: Codable, ItemOrFluid {
     public let icon: FileName
     public let subgroup: ItemSubgroupName
     public let defaultTemperature: Float

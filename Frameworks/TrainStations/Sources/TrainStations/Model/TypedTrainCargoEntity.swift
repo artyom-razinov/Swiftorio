@@ -12,12 +12,12 @@ public enum TypedTrainCargoEntity: TrainCargoEntity {
         return associatedValue.localizedName
     }
     
-    public var category: TrainCargoEntityCategory {
-        return associatedValue.category
-    }
-    
     public var entityType: TrainCargoEntityType {
         return associatedValue.entityType
+    }
+    
+    public var itemOrFluid: ItemOrFluid {
+        return associatedValue.itemOrFluid
     }
     
     private var associatedValue: TrainCargoEntity {
