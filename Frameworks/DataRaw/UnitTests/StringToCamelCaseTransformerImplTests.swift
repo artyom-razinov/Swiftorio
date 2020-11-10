@@ -5,6 +5,21 @@ import XCTest
 class StringToCamelCaseTransformerImplTests: TestCase {
     private let transformer = StringToCamelCaseTransformerImpl()
     
+    func disabled_test() {
+        check(
+            "1",
+            "_1"
+        )
+        check(
+            "default",
+            "`default`"
+        )
+        check(
+            "var",
+            "`var`"
+        )
+    }
+    
     func test() {
         check(
             "_a",

@@ -25,14 +25,15 @@ public final class SwiftorioDataRawDependencyCollectionRegisterer: BaseNestingDe
                 dataRawToJsonStringConverter: try di.resolve()
             )
         }
-        
+        di.register(type: StringToCamelCaseTransformer.self) { di in
+            StringToCamelCaseTransformerImpl()
+        }
         di.registerMultiple(type: CachingDataRawJsonStringProvider.self) { di in
             CachingDataRawJsonStringProvider(
                 dataRawJsonStringProvider: try di.resolve() as LoadingFromLuaDataRawJsonStringProvider,
                 temporaryDirectoryPathProvider: try di.resolve()
             )
         }.reregister { $0 as DataRawJsonStringProvider }
-        
         di.register(type: StringFromBundleLoader.self) { di in
             StringFromBundleLoaderImpl()
         }

@@ -17,19 +17,21 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
         let dataRaw = try dataRawProvider.dataRaw()
         
         let allItemsDictionaries: [[String: ItemPrototype]] = [
-            dataRaw.ammo,
-            dataRaw.capsule,
-            dataRaw.gun,
-            dataRaw.item,
-            dataRaw.module,
-            dataRaw.tool
+            dataRaw.ammo.keydByString,
+            dataRaw.capsule.keydByString,
+            dataRaw.gun.keydByString,
+            dataRaw.item.keydByString,
+            dataRaw.module.keydByString,
+            dataRaw.tool.keydByString
         ]
         
         let allItems = allItemsDictionaries.flatMap {
             ValueWithId.valuesWithId(dictionary: $0)
         }
         
-        let fluids: [ValueWithId<FluidPrototype>] = ValueWithId.valuesWithId(dictionary: dataRaw.fluid)
+        let fluids: [ValueWithId<FluidPrototype>] = ValueWithId.valuesWithId(
+            dictionary: dataRaw.fluid.keydByString
+        )
         
         var trainCargoEntities: [TypedTrainCargoEntity] = []
         
