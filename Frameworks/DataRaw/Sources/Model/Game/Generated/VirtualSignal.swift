@@ -1,6 +1,6 @@
 public final class VirtualSignal: Codable {
     public let order: String?
-    public let specialSignal: Bool?
+    public let specialSignal: Bool
     public let icon: FileName
     public let subgroup: ItemSubgroupName
     
@@ -13,10 +13,10 @@ public final class VirtualSignal: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.order = try container.decodeIfPresent(String.self, forKey: .order)
-        self.specialSignal = try container.decodeIfPresent(Bool.self, forKey: .specialSignal) ?? false
-        self.icon = try container.decode(FileName.self, forKey: .icon)
-        self.subgroup = try container.decode(String.self, forKey: .subgroup)
+        self.order = try container.decode(key: .order)
+        self.specialSignal = try container.decode(key: .specialSignal, default: false)
+        self.icon = try container.decode(key: .icon)
+        self.subgroup = try container.decode(key: .subgroup, default: .virtualSignal)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -25,5 +25,15 @@ public final class VirtualSignal: Codable {
         try container.encode(specialSignal, forKey: .specialSignal)
         try container.encode(icon, forKey: .icon)
         try container.encode(subgroup, forKey: .subgroup)
+    }
+}
+
+protocol OptionalProtocol {
+    static var optionalProtocolNilValue: Any { get }
+}
+
+extension Optional: OptionalProtocol {
+    static var optionalProtocolNilValue: Any {
+        return Self.none as Any
     }
 }

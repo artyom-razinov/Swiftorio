@@ -22,7 +22,7 @@ public final class Fluid: Codable, ItemOrFluid {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.icon = try container.decode(FileName.self, forKey: .icon)
-        self.subgroup = try container.decodeIfPresent(ItemSubgroupName.self, forKey: .subgroup) ?? "fluid"
+        self.subgroup = try container.decode(key: .subgroup, default: .fluid)
         self.defaultTemperature = try container.decode(Float.self, forKey: .defaultTemperature)
         self.pressureToSpeedRatio = try container.decodeIfPresent(Float.self, forKey: .pressureToSpeedRatio)
         self.flowToEnergyRatio = try container.decodeIfPresent(Float.self, forKey: .flowToEnergyRatio)

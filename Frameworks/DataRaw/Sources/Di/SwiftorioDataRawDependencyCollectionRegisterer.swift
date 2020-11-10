@@ -19,15 +19,20 @@ public final class SwiftorioDataRawDependencyCollectionRegisterer: BaseNestingDe
                 dataRawJsonStringProvider: try di.resolve()
             )
         }
-        di.register(type: DataRawJsonStringProvider.self) { di in
-            CachingDataRawJsonStringProvider(
-                dataRawJsonStringProvider: LoadingFromLuaDataRawJsonStringProvider(
-                    stringFromBundleLoader: try di.resolve(),
-                    dataRawToJsonStringConverter: try di.resolve()
-                ),
-                temporaryDirectoryPathProvider: try di.resolve()
+        di.register(type: LoadingFromLuaDataRawJsonStringProvider.self) { di in
+            LoadingFromLuaDataRawJsonStringProvider(
+                stringFromBundleLoader: try di.resolve(),
+                dataRawToJsonStringConverter: try di.resolve()
             )
         }
+        
+        di.registerMultiple(type: CachingDataRawJsonStringProvider.self) { di in
+            CachingDataRawJsonStringProvider(
+                dataRawJsonStringProvider: try di.resolve() as LoadingFromLuaDataRawJsonStringProvider,
+                temporaryDirectoryPathProvider: try di.resolve()
+            )
+        }.reregister { $0 as DataRawJsonStringProvider }
+        
         di.register(type: StringFromBundleLoader.self) { di in
             StringFromBundleLoaderImpl()
         }

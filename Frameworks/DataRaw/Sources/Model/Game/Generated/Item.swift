@@ -19,11 +19,12 @@ open class Item: Codable, ItemOrFluid {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         self.icon = try container.decodeIfPresent(FileName.self, forKey: .icon)
         self.stackSize = try container.decodeIfPresent(Integer.self, forKey: .stackSize) ?? 1
         self.icons = try container.decodeIfPresent(Icons.self, forKey: .icons) ?? nil /* FIXME */
         self.order = try container.decodeIfPresent(String.self, forKey: .order)
-        self.subgroup = try container.decodeIfPresent(String.self, forKey: .subgroup) ?? "other"
+        self.subgroup = try container.decode(key: .subgroup, default: .other)
         self.localisedName = try container.decodeIfPresent(LocalisedString.self, forKey: .localisedName)
         self.flags = try container.decodeIfPresent([String].self, forKey: .flags) ?? []
     }

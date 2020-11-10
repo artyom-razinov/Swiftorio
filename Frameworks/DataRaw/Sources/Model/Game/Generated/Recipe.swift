@@ -34,7 +34,7 @@ public final class Recipe: Codable {
         self.energyRequired = try container.decodeIfPresent(Float.self, forKey: .energyRequired) ?? 0.5
         self.category = try container.decodeIfPresent(RecipeCategory.self, forKey: .category) ?? nil /* FIXME: ?? crafting */
         self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
-        self.subgroup = try container.decodeIfPresent(String.self, forKey: .subgroup) ?? "other"
+        self.subgroup = try container.decodeIfPresent(ItemSubgroupName.self, forKey: .subgroup) ?? .other
         self.icons = try container.decodeIfPresent(Icons.self, forKey: .icons) ?? nil /* FIXME */
         self.order = try container.decodeIfPresent(String.self, forKey: .order)
         self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true

@@ -4,6 +4,6 @@ final class RawMaterialsTrainCargoCategory: ItemTrainCargoCategory {
     var icon: String { "iron-ore" }
     
     override func match(itemTrainCargoEntity: ItemTrainCargoEntity) -> Bool {
-        return itemTrainCargoEntity.item.subgroup == "raw-material"
-    }
+        return false //itemTrainCargoEntity.item.subgroup == "raw-material"
+    }// FIXMEEEEE
 }
