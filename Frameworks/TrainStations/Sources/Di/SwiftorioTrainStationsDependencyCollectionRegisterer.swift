@@ -15,9 +15,14 @@ public final class SwiftorioTrainStationsDependencyCollectionRegisterer: BaseNes
     public override func registerTopLevelDependencies(di: DependencyRegisterer) {
         di.register(type: TrainStationsBlueprintBookProvider.self) { di in
             TrainStationsBlueprintBookProviderImpl(
-                dataRawProvider: try di.resolve(),
-                localizer: try di.resolve(),
+                typedTrainCargoEntityProvider: try di.resolve(),
                 richTextBuilder: try di.resolve()
+            )
+        }
+        di.register(type: TypedTrainCargoEntityProvider.self) { di in
+            TypedTrainCargoEntityProviderImpl(
+                dataRawProvider: try di.resolve(),
+                localizer: try di.resolve()
             )
         }
     }

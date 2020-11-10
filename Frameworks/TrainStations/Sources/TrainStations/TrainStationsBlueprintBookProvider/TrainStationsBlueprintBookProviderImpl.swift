@@ -5,17 +5,14 @@ import SwiftorioRichText
 
 public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprintBookProvider {
     private let version = 281474976710656
-    private let dataRawProvider: DataRawProvider
-    private let localizer: Localizer
+    private let typedTrainCargoEntityProvider: TypedTrainCargoEntityProvider
     private let richTextBuilder: RichTextBuilder
     
     public init(
-        dataRawProvider: DataRawProvider,
-        localizer: Localizer,
+        typedTrainCargoEntityProvider: TypedTrainCargoEntityProvider,
         richTextBuilder: RichTextBuilder)
     {
-        self.dataRawProvider = dataRawProvider
-        self.localizer = localizer
+        self.typedTrainCargoEntityProvider = typedTrainCargoEntityProvider
         self.richTextBuilder = richTextBuilder
     }
     
@@ -59,7 +56,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     }
     
     private func categoryBooks() throws -> [SwiftorioBlueprints.BlueprintBook] {
-        let entities = try typedTrainCargoEntities()
+        let entities = try typedTrainCargoEntityProvider.typedTrainCargoEntities()
         
         var entitiesByCategory: [TrainCargoEntityCategory: [TypedTrainCargoEntity]] = [:]
         entities.forEach { entity in
@@ -324,80 +321,6 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
             schedules: schedules,
             version: version
         )
-    }
-    
-    private func typedTrainCargoEntities() throws -> [TypedTrainCargoEntity] {
-        let dataRaw = try dataRawProvider.dataRaw()
-        
-        let allItemsDictionaries: [[String: Item]] = [
-            dataRaw.ammo,
-            dataRaw.capsule,
-            dataRaw.gun,
-            dataRaw.item,
-            dataRaw.module,
-            dataRaw.tool
-        ]
-        
-        let allItems = allItemsDictionaries.flatMap {
-            ValueWithId.valuesWithId(dictionary: $0)
-        }
-        
-        let fluids: [ValueWithId<Fluid>] = ValueWithId.valuesWithId(dictionary: dataRaw.fluid)
-        
-        var trainCargoEntities: [TypedTrainCargoEntity] = []
-        
-        trainCargoEntities.append(
-            contentsOf: try allItems
-                .filter { itemWithId in
-                    !itemWithId.value.flags.contains("hidden") // TODO: Generate enum for flags
-                }
-                .map { itemWithId in
-                    TypedTrainCargoEntity.item(
-                        ItemTrainCargoEntity(
-                            id: itemWithId.id,
-                            localizedName: try localizedName(itemWithId: itemWithId),
-                            category: .other,
-                            item: itemWithId.value
-                        )
-                    )
-                }
-        )
-        
-        trainCargoEntities.append(
-            contentsOf: try fluids
-                .filter { itemWithId in
-                    !itemWithId.value.hidden
-                }
-                .map { itemWithId in
-                    TypedTrainCargoEntity.fluid(
-                        FluidTrainCargoEntity(
-                            id: itemWithId.id,
-                            localizedName: try localizer.localize(
-                                locale: .en,
-                                sectionName: .fluid_name,
-                                idInSection: itemWithId.id
-                            ),
-                            fluid: itemWithId.value
-                        )
-                    )
-                }
-        )
-        
-        return trainCargoEntities
-    }
-    
-    private func localizedName(itemWithId: ValueWithId<Item>) throws -> String {
-        if let localisedName = itemWithId.value.localisedName {
-            return try localizer.localize(
-                locale: .en,
-                fullId: localisedName.id
-            )
-        } else {
-            return try localizer.localize(
-                locale: .en,
-                idInAnySection: itemWithId.id
-            )
-        }
     }
     
     private func book(label: String, description: String? = nil, blueprints: [IndexedBlueprintOrBook]) -> SwiftorioBlueprints.BlueprintBook {
