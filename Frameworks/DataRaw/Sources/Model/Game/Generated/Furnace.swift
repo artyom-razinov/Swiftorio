@@ -9,8 +9,8 @@ public final class Furnace: EntityWithHealth {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.craftingSpeed = try container.decode(Float.self, forKey: .craftingSpeed)
-        self.craftingCategories = try container.decode(CraftingCategories.self, forKey: .craftingCategories)
+        self.craftingSpeed = try container.decode(key: .craftingSpeed)
+        self.craftingCategories = try container.decode(key: .craftingCategories)
         
         try super.init(from: decoder)
     }

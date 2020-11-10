@@ -11,9 +11,9 @@ public final class AssemblingMachine: EntityWithHealth {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.craftingCategories = try container.decode(CraftingCategories.self, forKey: .craftingCategories)
-        self.ingredientCount = try container.decodeIfPresent(Integer.self, forKey: .ingredientCount)
-        self.craftingSpeed = try container.decode(Float.self, forKey: .craftingSpeed)
+        self.craftingCategories = try container.decode(key: .craftingCategories)
+        self.ingredientCount = try container.decode(key: .ingredientCount)
+        self.craftingSpeed = try container.decode(key: .craftingSpeed)
         
         try super.init(from: decoder)
     }

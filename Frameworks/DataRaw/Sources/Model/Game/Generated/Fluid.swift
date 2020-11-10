@@ -21,14 +21,14 @@ public final class Fluid: Codable, ItemOrFluid {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.icon = try container.decode(FileName.self, forKey: .icon)
+        self.icon = try container.decode(key: .icon)
         self.subgroup = try container.decode(key: .subgroup, default: .fluid)
-        self.defaultTemperature = try container.decode(Float.self, forKey: .defaultTemperature)
-        self.pressureToSpeedRatio = try container.decodeIfPresent(Float.self, forKey: .pressureToSpeedRatio)
-        self.flowToEnergyRatio = try container.decodeIfPresent(Float.self, forKey: .flowToEnergyRatio)
-        self.order = try container.decodeIfPresent(String.self, forKey: .order)
-        self.maxTemperature = try container.decode(Float.self, forKey: .maxTemperature)
-        self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
+        self.defaultTemperature = try container.decode(key: .defaultTemperature)
+        self.pressureToSpeedRatio = try container.decode(key: .pressureToSpeedRatio)
+        self.flowToEnergyRatio = try container.decode(key: .flowToEnergyRatio)
+        self.order = try container.decode(key: .order)
+        self.maxTemperature = try container.decode(key: .maxTemperature)
+        self.hidden = try container.decode(key: .hidden, default: false)
     }
     
     public func encode(to encoder: Encoder) throws {

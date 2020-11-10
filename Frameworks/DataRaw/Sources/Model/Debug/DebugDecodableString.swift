@@ -12,7 +12,6 @@ public final class InGameEnumValueRegistry {
         self.stringToCamelCaseTransformer = stringToCamelCaseTransformer
     }
     
-    
     public func register(value: String, type: Any.Type) {
         let typeName = "\(type)"
         possibleValuesByTypeName[typeName, default: []].insert(value)

@@ -7,7 +7,7 @@ public final class TransportBelt: EntityWithHealth {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.speed = try container.decode(Float.self, forKey: .speed)
+        self.speed = try container.decode(key: .speed)
         
         try super.init(from: decoder)
     }

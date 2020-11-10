@@ -7,7 +7,7 @@ open class EntityWithHealth: Entity {
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.maxHealth = try container.decode(Float.self, forKey: .maxHealth)
+        self.maxHealth = try container.decode(key: .maxHealth)
         
         try super.init(from: decoder)
     }

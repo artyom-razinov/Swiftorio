@@ -42,7 +42,7 @@ public final class Technology: Codable {
             
             self.ingredients = ingredients
             
-            self.time = try container.decode(Integer.self, forKey: .time)
+            self.time = try container.decode(key: .time)
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -78,12 +78,12 @@ public final class Technology: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.unit = try container.decode(Unit.self, forKey: .unit)
-        self.order = try container.decodeIfPresent(String.self, forKey: .order)
-        self.upgrade = try container.decodeIfPresent(Bool.self, forKey: .upgrade) ?? false
-        self.prerequisites = try container.decodeIfPresent(Prerequisites.self, forKey: .prerequisites) ?? nil /* FIXME */
-        self.iconSize = try container.decodeIfPresent(Integer.self, forKey: .iconSize) ?? 32
-        self.icon = try container.decode(FileName.self, forKey: .icon)
+        self.unit = try container.decode(key: .unit)
+        self.order = try container.decode(key: .order)
+        self.upgrade = try container.decode(key: .upgrade, default: false)
+        self.prerequisites = try container.decode(key: .prerequisites, default: nil /* FIXME */)
+        self.iconSize = try container.decode(key: .iconSize, default: 32)
+        self.icon = try container.decode(key: .icon)
     }
     
     public func encode(to encoder: Encoder) throws {

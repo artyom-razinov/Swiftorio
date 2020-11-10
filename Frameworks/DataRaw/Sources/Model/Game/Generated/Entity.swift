@@ -17,12 +17,12 @@ open class Entity: Codable {
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.weight = try container.decodeIfPresent(Float.self, forKey: .weight) ?? 1
-        self.selectionBox = try container.decodeIfPresent(Rect.self, forKey: .selectionBox)
-        self.fastReplaceableGroup = try container.decodeIfPresent(String.self, forKey: .fastReplaceableGroup)
-        self.minable = try container.decodeIfPresent(Minable.self, forKey: .minable)
-        self.collisionBox = try container.decodeIfPresent(Rect.self, forKey: .collisionBox)
-        self.icon = try container.decodeIfPresent(FileName.self, forKey: .icon)
+        self.weight = try container.decode(key: .weight, default: 1)
+        self.selectionBox = try container.decode(key: .selectionBox)
+        self.fastReplaceableGroup = try container.decode(key: .fastReplaceableGroup)
+        self.minable = try container.decode(key: .minable)
+        self.collisionBox = try container.decode(key: .collisionBox)
+        self.icon = try container.decode(key: .icon)
     }
     
     public func encode(to encoder: Encoder) throws {

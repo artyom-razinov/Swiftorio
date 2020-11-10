@@ -19,13 +19,13 @@ public final class Inserter: EntityWithHealth {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.rotationSpeed = try container.decode(Float.self, forKey: .rotationSpeed)
-        self.handSize = try container.decodeIfPresent(Float.self, forKey: .handSize) ?? 1
-        self.filterCount = try container.decodeIfPresent(Integer.self, forKey: .filterCount) ?? 0
-        self.stack = try container.decodeIfPresent(Bool.self, forKey: .stack) ?? false
-        self.extensionSpeed = try container.decode(Float.self, forKey: .extensionSpeed)
-        self.energyPerMovement = try container.decode(String.self, forKey: .energyPerMovement)
-        self.energyPerRotation = try container.decode(String.self, forKey: .energyPerRotation)
+        self.rotationSpeed = try container.decode(key: .rotationSpeed)
+        self.handSize = try container.decode(key: .handSize, default: 1)
+        self.filterCount = try container.decode(key: .filterCount, default: 0)
+        self.stack = try container.decode(key: .stack, default: false)
+        self.extensionSpeed = try container.decode(key: .extensionSpeed)
+        self.energyPerMovement = try container.decode(key: .energyPerMovement)
+        self.energyPerRotation = try container.decode(key: .energyPerRotation)
         
         try super.init(from: decoder)
     }

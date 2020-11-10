@@ -18,9 +18,9 @@ public final class MiningDrill: EntityWithHealth {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.resourceCategories = try container.decode(ResourceCategories.self, forKey: .resourceCategories)
-        self.miningPower = try container.decodeIfPresent(Float.self, forKey: .miningPower)
-        self.miningSpeed = try container.decode(Float.self, forKey: .miningSpeed)
+        self.resourceCategories = try container.decode(key: .resourceCategories)
+        self.miningPower = try container.decode(key: .miningPower)
+        self.miningSpeed = try container.decode(key: .miningSpeed)
         
         try super.init(from: decoder)
     }

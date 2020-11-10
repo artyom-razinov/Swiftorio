@@ -15,11 +15,11 @@ public final class Resource: Entity {
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.maximum = try container.decodeIfPresent(Integer.self, forKey: .maximum) ?? 0
-        self.minimum = try container.decodeIfPresent(Integer.self, forKey: .minimum) ?? 0
-        self.category = try container.decodeIfPresent(ResourceCategory.self, forKey: .category) ?? nil /* FIXME: ?? basic-solid */
-        self.normal = try container.decodeIfPresent(Integer.self, forKey: .normal) ?? 0
-        self.infinite = try container.decodeIfPresent(Bool.self, forKey: .infinite) ?? false
+        self.maximum = try container.decode(key: .maximum, default: 0)
+        self.minimum = try container.decode(key: .minimum, default: 0)
+        self.category = try container.decode(key: .category, default: nil /* FIXME: ?? basic-solid */)
+        self.normal = try container.decode(key: .normal, default: 0)
+        self.infinite = try container.decode(key: .infinite, default: false)
         
         try super.init(from: decoder)
     }

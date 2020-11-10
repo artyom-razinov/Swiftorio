@@ -29,16 +29,16 @@ public final class Recipe: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ingredients = try container.decodeIfPresent(RecipeIngredients.self, forKey: .ingredients)
-        self.results = try container.decodeIfPresent(RecipeResults.self, forKey: .results)
-        self.energyRequired = try container.decodeIfPresent(Float.self, forKey: .energyRequired) ?? 0.5
-        self.category = try container.decodeIfPresent(RecipeCategory.self, forKey: .category) ?? nil /* FIXME: ?? crafting */
-        self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
-        self.subgroup = try container.decodeIfPresent(ItemSubgroupName.self, forKey: .subgroup) ?? .other
-        self.icons = try container.decodeIfPresent(Icons.self, forKey: .icons) ?? nil /* FIXME */
-        self.order = try container.decodeIfPresent(String.self, forKey: .order)
-        self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
-        self.icon = try container.decodeIfPresent(FileName.self, forKey: .icon)
+        self.ingredients = try container.decode(key: .ingredients)
+        self.results = try container.decode(key: .results)
+        self.energyRequired = try container.decode(key: .energyRequired, default: 0.5)
+        self.category = try container.decode(key: .category, default: nil /* FIXME: ?? crafting */)
+        self.hidden = try container.decode(key: .hidden, default: false)
+        self.subgroup = try container.decode(key: .subgroup, default: .other)
+        self.icons = try container.decode(key: .icons, default: nil /* FIXME */)
+        self.order = try container.decode(key: .order)
+        self.enabled = try container.decode(key: .enabled, default: true)
+        self.icon = try container.decode(key: .icon)
     }
     
     public func encode(to encoder: Encoder) throws {

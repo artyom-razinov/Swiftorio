@@ -10,6 +10,7 @@
 		5413E1060020FADCAA9AA8A9 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A25E0E207F4A180042D76A9 /* Pods_UnitTests.framework */; };
 		A34345A9D02D332272E29917 /* Pods_swiftorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B407B9CDDDBBB2B5BDFD58B2 /* Pods_swiftorio.framework */; };
 		F801FAF22556824A00E24AEE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F801FAF12556824A00E24AEE /* main.swift */; };
+		F83AC345255B3A6500C59F67 /* GenerateEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83AC344255B3A6500C59F67 /* GenerateEnums.swift */; };
 		F878DCFD25574E00001EFEC3 /* GenerateDataRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878DCFC25574E00001EFEC3 /* GenerateDataRaw.swift */; };
 		F878DCFF2557E1A2001EFEC3 /* FindTopLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878DCFE2557E1A2001EFEC3 /* FindTopLevel.swift */; };
 		F878DD012557E1B1001EFEC3 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878DD002557E1B1001EFEC3 /* Shortcuts.swift */; };
@@ -37,6 +38,7 @@
 		F136B200AF4038C73DDDA8DA /* Pods-swiftorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftorio.debug.xcconfig"; path = "Target Support Files/Pods-swiftorio/Pods-swiftorio.debug.xcconfig"; sourceTree = "<group>"; };
 		F801FAEE2556824A00E24AEE /* swiftorio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftorio; sourceTree = BUILT_PRODUCTS_DIR; };
 		F801FAF12556824A00E24AEE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F83AC344255B3A6500C59F67 /* GenerateEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateEnums.swift; sourceTree = "<group>"; };
 		F878DCFC25574E00001EFEC3 /* GenerateDataRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateDataRaw.swift; sourceTree = "<group>"; };
 		F878DCFE2557E1A2001EFEC3 /* FindTopLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTopLevel.swift; sourceTree = "<group>"; };
 		F878DD002557E1B1001EFEC3 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				F878DCFC25574E00001EFEC3 /* GenerateDataRaw.swift */,
 				F878DCFE2557E1A2001EFEC3 /* FindTopLevel.swift */,
 				F878DD002557E1B1001EFEC3 /* Shortcuts.swift */,
+				F83AC344255B3A6500C59F67 /* GenerateEnums.swift */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				F878DD012557E1B1001EFEC3 /* Shortcuts.swift in Sources */,
 				F878DCFF2557E1A2001EFEC3 /* FindTopLevel.swift in Sources */,
 				F878DCFD25574E00001EFEC3 /* GenerateDataRaw.swift in Sources */,
+				F83AC345255B3A6500C59F67 /* GenerateEnums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
