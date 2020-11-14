@@ -59,7 +59,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                             id: itemWithId.id,
                             localizedName: try localizer.localize(
                                 locale: .en,
-                                sectionName: .fluid_name,
+                                sectionName: .fluidName,
                                 idInSection: itemWithId.id
                             ),
                             fluidPrototype: itemWithId.value
@@ -71,7 +71,7 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
             }
         )
         
-        return trainCargoEntities
+        return trainCargoEntities.filter { !$0.isHidden }
     }
     
     private func localizedName(itemWithId: ValueWithId<ItemPrototype>) throws -> String {

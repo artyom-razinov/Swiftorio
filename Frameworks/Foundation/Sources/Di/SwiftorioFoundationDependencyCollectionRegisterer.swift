@@ -1,4 +1,5 @@
 import SwiftorioDi
+import Foundation
 
 public final class SwiftorioFoundationDependencyCollectionRegisterer: BaseNestingDependencyCollectionRegisterer {
     public override func nestedRegisterers() -> [DependencyCollectionRegisterer] {

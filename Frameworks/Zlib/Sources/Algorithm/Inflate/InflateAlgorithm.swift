@@ -1,4 +1,5 @@
 import zlib
+import Foundation
 
 public final class InflateAlgorithm: Algorithm {
     public init() {

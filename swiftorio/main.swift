@@ -10,7 +10,7 @@ withDi { di in
 
     let book = try provider.trainStationsBlueprintBook()
 
-    if false {
+    if true {
         let encoder = try di.resolve() as BlueprintToBlueprintStringEncoder
 
         print(try encoder.encodeToBlueprintString(blueprint: book))

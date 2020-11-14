@@ -1,4 +1,5 @@
 import SwiftorioFoundation
+import Foundation
 
 public final class BlueprintToJsonStringEncoderImpl: BlueprintToJsonStringEncoder {
     public init() {

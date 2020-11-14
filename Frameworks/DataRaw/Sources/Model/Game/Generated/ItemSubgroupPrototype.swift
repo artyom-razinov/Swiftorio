@@ -1,5 +1,5 @@
 public final class ItemSubgroupPrototype: PrototypeBase {
-    public let group: String
+    public let group: ItemGroupPrototypeName
     
     enum CodingKeys: String, CodingKey {
         case group

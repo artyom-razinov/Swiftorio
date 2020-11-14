@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol AlgorithmPerformer {
     func perform(
         algorithm: Algorithm,

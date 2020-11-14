@@ -25,7 +25,7 @@ public final class InGameEnumsGenerator {
         // be used always.
         if !enumCodeByEnumName.isEmpty {
             try render(enumCodeByEnumName: enumCodeByEnumName)
-            exit(0)
+            preconditionFailure()
         }
     }
     

@@ -9,6 +9,6 @@ func generateDataRaw() {
         try generator.generate()
     } catch {
         print("Error: \(error)")
-        exit(1)
+        preconditionFailure()
     }
 }

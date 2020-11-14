@@ -1,4 +1,5 @@
 import SwiftorioFoundation
+import Foundation
 
 public final class DataRawProviderImpl: DataRawProvider {
     private let dataRawJsonStringProvider: DataRawJsonStringProvider

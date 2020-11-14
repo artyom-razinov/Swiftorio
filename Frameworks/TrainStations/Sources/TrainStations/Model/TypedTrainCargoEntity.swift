@@ -8,6 +8,10 @@ public enum TypedTrainCargoEntity: TrainCargoEntity {
         return associatedValue.id
     }
     
+    public var isHidden: Bool {
+        return associatedValue.isHidden
+    }
+    
     public var localizedName: String {
         return associatedValue.localizedName
     }

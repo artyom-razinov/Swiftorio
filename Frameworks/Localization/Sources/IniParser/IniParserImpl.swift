@@ -1,4 +1,5 @@
 import SwiftorioFoundation
+import Foundation
 
 // https://en.wikipedia.org/wiki/INI_file
 public final class IniParserImpl: IniParser {

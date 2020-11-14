@@ -1,4 +1,5 @@
 import zlib
+import Foundation
 
 public protocol Algorithm {
     func initialOutputDataCapacity(inputData: Data) -> Int

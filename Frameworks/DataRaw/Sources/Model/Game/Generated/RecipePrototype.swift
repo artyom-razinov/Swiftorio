@@ -8,7 +8,7 @@ public final class RecipePrototype: PrototypeBase {
     public let energyRequired: Float?
     public let category: String?
     public let hidden: Bool?
-    public let subgroup: ItemSubgroupName
+    public let subgroup: ItemSubgroupPrototypeName
     public let icons: Icons?
     public let enabled: Bool?
     public let icon: FileName?

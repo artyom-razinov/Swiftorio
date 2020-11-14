@@ -1,3 +1,5 @@
+import Foundation
+
 public final class DependencyInjectionImpl: DependencyInjection {
     private var dependencies = [HashableType: RegisteredDependency]()
     private let recursiveLock = NSRecursiveLock()

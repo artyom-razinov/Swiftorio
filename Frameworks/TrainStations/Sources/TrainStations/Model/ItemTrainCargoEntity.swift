@@ -12,4 +12,8 @@ public struct ItemTrainCargoEntity: TrainCargoEntity {
     public var entityType: TrainCargoEntityType {
         return .item
     }
+    
+    public var isHidden: Bool {
+        return itemPrototype.flags.contains("hidden")
+    }
 }

@@ -1,5 +1,6 @@
 import zlib
 import SwiftorioFoundation
+import Foundation
 
 public final class AlgorithmPerformerImpl: AlgorithmPerformer {
     public init() {

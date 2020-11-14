@@ -1,4 +1,5 @@
 import SwiftorioDataRaw
+import Foundation
 
 // Finds top level keys where items are locate. Output:
 /*

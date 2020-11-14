@@ -1,5 +1,6 @@
 import zlib
 import SwiftorioFoundation
+import Foundation
 
 public final class DeflateAlgorithm: Algorithm {
     private let chunk = 16384 // all examples use this value

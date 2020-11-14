@@ -5,4 +5,5 @@ public protocol TrainCargoEntity {
     var localizedName: String { get }
     var entityType: TrainCargoEntityType { get }
     var itemOrFluidPrototype: ItemOrFluidPrototype { get }
+    var isHidden: Bool { get }
 }

@@ -7,20 +7,26 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     private let version = 281474976710656
     private let typedTrainCargoEntityProvider: TypedTrainCargoEntityProvider
     private let richTextBuilder: RichTextBuilder
+    private let orderComparator: OrderComparator
+    private let trainCargoCategoriesProvider: TrainCargoCategoriesProvider
     
     public init(
         typedTrainCargoEntityProvider: TypedTrainCargoEntityProvider,
-        richTextBuilder: RichTextBuilder)
+        richTextBuilder: RichTextBuilder,
+        orderComparator: OrderComparator,
+        trainCargoCategoriesProvider: TrainCargoCategoriesProvider)
     {
         self.typedTrainCargoEntityProvider = typedTrainCargoEntityProvider
         self.richTextBuilder = richTextBuilder
+        self.orderComparator = orderComparator
+        self.trainCargoCategoriesProvider = trainCargoCategoriesProvider
     }
     
     public func trainStationsBlueprintBook() throws -> SwiftorioBlueprints.BlueprintBook {
         return book(
             label: "Train network",
             description: "Train stops and trains for all resources (requester/provider) with rich text names",
-            blueprints: indexed(try categoryBooks())
+            blueprints: indexed(try categoryBooks(locale: .en))
         )
     }
     
@@ -55,24 +61,64 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
     }
     
-    private func categoryBooks() throws -> [SwiftorioBlueprints.BlueprintBook] {
+    private func categoryBooks(locale: Locale) throws -> [BlueprintBook] {
         let entities = try typedTrainCargoEntityProvider.typedTrainCargoEntities()
         
-        let categories: [TrainCargoCategory] = [
-            RawMaterialsTrainCargoCategory(),
-            FluidTrainCargoCategory()
-        ]
+        let categories = try trainCargoCategoriesProvider.trainCargoCategories(locale: locale)
+        var countOfPrototypesAssignedToCategoryById = [String: Int]()
+        var entitiesById = [String: TypedTrainCargoEntity]()
         
-        return categories.map { category in
+        entities.forEach {
+            entitiesById[$0.id] = $0
+            countOfPrototypesAssignedToCategoryById[$0.id] = 0
+        }
+        
+        let categoryBooks: [BlueprintBook] = categories.map { category in
             let typedTrainCargoEntities = entities
                 .filter { category.match(typedTrainCargoEntity: $0) }
                 .sorted { lhs, rhs in isOrderedBefore(lhs: lhs, rhs: rhs) }
+            
+            typedTrainCargoEntities.forEach {
+                countOfPrototypesAssignedToCategoryById[$0.id, default: 0] += 1
+            }
             
             return categoryBook(
                 category: category,
                 typedTrainCargoEntities: typedTrainCargoEntities
             )
         }
+        
+        let errors: [String] = countOfPrototypesAssignedToCategoryById
+            .filter { key, value in
+                switch entitiesById[key] {
+                case .fluid(let fluid):
+                    if fluid.fluidPrototype.hidden {
+                        return false
+                    }
+                case .item(let item):
+                if item.itemPrototype.flags.contains("hidden") {
+                    return false
+                }
+                default:
+                    break
+                }
+                
+                return value == 0
+            }
+            .sorted { $0.1 < $1.1 }
+            .map { key, value in
+                let subgroup = entitiesById[key]?.itemOrFluidPrototype.subgroup
+                
+                return "\(key): \(value)" + (subgroup.map { " \($0)" } ?? "")
+            }
+                
+        
+        if !errors.isEmpty {
+            print("Errors:\n\(errors.joined(separator: "\n"))")
+            preconditionFailure()
+        }
+        
+        return categoryBooks
     }
     
     private func isOrderedBefore(
@@ -80,16 +126,12 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         rhs: TypedTrainCargoEntity)
         -> Bool
     {
-        switch (lhs.itemOrFluidPrototype.order, rhs.itemOrFluidPrototype.order) {
-        case let (.some(lhs), .some(rhs)):
-            return lhs < rhs
-        case (.none, .some):
-            return true
-        case (.some, .none):
-            return false
-        case (.none, .none):
-            return lhs.id < rhs.id
-        }
+        return orderComparator.isOrderedBefore(
+            lhsOrder: lhs.itemOrFluidPrototype.order,
+            lhsName: lhs.id,
+            rhsOrder: rhs.itemOrFluidPrototype.order,
+            rhsName: rhs.id
+        )
     }
     
     private func categoryBook(
@@ -335,4 +377,6 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
             version: version
         )
     }
+    
+    // MARK: - Trains
 }

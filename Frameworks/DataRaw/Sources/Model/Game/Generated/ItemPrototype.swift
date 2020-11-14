@@ -2,7 +2,7 @@ open class ItemPrototype: PrototypeBase, ItemOrFluidPrototype {
     public let icon: FileName?
     public let stackSize: Integer?
     public let icons: Icons?
-    public let subgroup: ItemSubgroupName
+    public let subgroup: ItemSubgroupPrototypeName
     public let flags: [String]
     
     enum CodingKeys: String, CodingKey {

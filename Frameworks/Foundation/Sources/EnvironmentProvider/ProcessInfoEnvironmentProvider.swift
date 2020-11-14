@@ -1,3 +1,5 @@
+import Foundation
+
 public final class ProcessInfoEnvironmentProvider: EnvironmentProvider {
     private let processInfo: ProcessInfo
     

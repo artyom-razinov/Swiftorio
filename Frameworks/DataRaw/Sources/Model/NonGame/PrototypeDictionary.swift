@@ -22,6 +22,12 @@ public final class PrototypeDictionary<N, P>: Codable
         return plain
     }
     
+    public var values: [PrototypeType] {
+        return dictionary.map { _, prototype in
+            prototype
+        }
+    }
+    
     public var flatten: [NamedPrototype<NameType, PrototypeType>] {
         return dictionary.map { name, prototype in
             NamedPrototype(name: name, prototype: prototype)

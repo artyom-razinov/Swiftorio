@@ -1,6 +1,6 @@
 public final class FluidPrototype: PrototypeBase, ItemOrFluidPrototype {
     public let icon: FileName
-    public let subgroup: ItemSubgroupName
+    public let subgroup: ItemSubgroupPrototypeName
     public let defaultTemperature: Float
     public let pressureToSpeedRatio: Float?
     public let flowToEnergyRatio: Float?

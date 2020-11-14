@@ -6,6 +6,7 @@ import SwiftorioFoundation
 import SwiftorioRichText
 import SwiftorioBlueprints
 import SwiftorioLocalization
+import Foundation
 
 public func json(string: String) throws -> [String: Any] {
     let jsonObject = try JSONSerialization.jsonObject(

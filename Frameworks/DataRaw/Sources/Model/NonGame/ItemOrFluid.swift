@@ -1,4 +1,4 @@
 public protocol ItemOrFluidPrototype {
-    var subgroup: ItemSubgroupName { get }
+    var subgroup: ItemSubgroupPrototypeName { get }
     var order: String? { get }
 }

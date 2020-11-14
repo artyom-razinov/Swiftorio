@@ -9,11 +9,9 @@ public final class SwiftorioDataRawDependencyCollectionRegisterer: BaseNestingDe
     }
     
     public override func registerTopLevelDependencies(di: DependencyRegisterer) {
-        // TODO: Move to `SwiftorioFoundation`
-        di.register(type: TemporaryDirectoryPathProvider.self) { _ in
-            NsTemporaryDirectoryPathProvider()
+        di.register(type: OrderComparator.self) { _ in
+            OrderComparatorImpl()
         }
-        
         di.register(type: DataRawProvider.self) { di in
             DataRawProviderImpl(
                 dataRawJsonStringProvider: try di.resolve()

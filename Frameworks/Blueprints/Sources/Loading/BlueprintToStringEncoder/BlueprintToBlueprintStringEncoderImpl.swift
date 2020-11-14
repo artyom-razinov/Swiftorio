@@ -1,5 +1,6 @@
 import SwiftorioFoundation
 import SwiftorioZlib
+import Foundation
 
 public final class BlueprintToBlueprintStringEncoderImpl: BlueprintToBlueprintStringEncoder {
     private let algorithmPerformer: AlgorithmPerformer

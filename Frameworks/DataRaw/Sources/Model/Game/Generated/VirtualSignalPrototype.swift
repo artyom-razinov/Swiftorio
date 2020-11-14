@@ -1,7 +1,7 @@
 public final class VirtualSignalPrototype: PrototypeBase {
     public let specialSignal: Bool
     public let icon: FileName
-    public let subgroup: ItemSubgroupName
+    public let subgroup: ItemSubgroupPrototypeName
     
     enum CodingKeys: String, CodingKey {
         case order

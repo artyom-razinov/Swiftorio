@@ -56,30 +56,73 @@ target 'UnitTests' do
 end
 
 post_install do |installer|
-    files = Dir.glob("*.xcodeproj")
-    proj_file = files[0]
-    app_project = Xcodeproj::Project.open("/Users/razinov/src/swiftorio/swiftorio.xcodeproj")
+  project = Xcodeproj::Project.open("/Users/razinov/src/swiftorio/swiftorio.xcodeproj")
+  
+  patch_to_be_able_to_run_executable(project)
+  patch_removing_default_imports()
+
+  project.save
+end
+
+def patch_to_be_able_to_run_executable(project)
+  project.native_targets.each do |target|
+      target.build_configurations.each do |config|
+          config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = '$(inherited) @executable_path/../Frameworks @loader_path/Frameworks'
+          prefix = ' @executable_path/'
+          
+          # For each pod, add the framework path to LD_RUNPATH_SEARCH_PATHS
+          all_framework_names.each do |framework_name|
+            config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = config.build_settings['LD_RUNPATH_SEARCH_PATHS'] + prefix + framework_name + '/'
+          end
+      end
+  end
+end
+
+def patch_removing_default_imports()
+  swiftorio_pod_names.each do |target_name|
+    remove_default_import_from_target(target_name)
+  end
+end
+
+def remove_default_import_from_target(target_name)
+  dir = "#{__dir__}/Pods/Target Support Files/#{target_name}"
+  
+  remove_default_import_from_file("#{dir}/#{target_name}-umbrella.h")
+  remove_default_import_from_file("#{dir}/#{target_name}-prefix.pch")
+end
+
+def remove_default_import_from_file(file_path)
+  if File.file?(file_path)
+    text = File.read(file_path)
     
-    app_project.native_targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = '$(inherited) @executable_path/../Frameworks @loader_path/Frameworks'
-            prefix = ' @executable_path/'
-            
-            # For each pod, add the framework path to LD_RUNPATH_SEARCH_PATHS
-            all_framework_names.each do |framework_name|
-              config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = config.build_settings['LD_RUNPATH_SEARCH_PATHS'] + prefix + framework_name + '/'
-            end
-            
-            installer.generated_projects.each do |pod_target|
-              puts(pod_target)
+    new_defines = '#ifndef MIXBOX_EXPORT
+#if defined(__cplusplus)
+#define MIXBOX_EXPORT extern "C"
+#else
+#define MIXBOX_EXPORT extern
+#endif
+#endif'
 
-                # pod_target.build_configurations.each do |pod_config|
-                #     pod_config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
-                #     pod_config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = '$(inherited) /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/'
-                # end
-            end
-        end
-    end
+    # iOS
+    text = text.gsub(old_defines('UIKit'), new_defines)
+    # OSX
+    text = text.gsub(old_defines('Cocoa'), new_defines)
+    text = text.gsub('FOUNDATION_EXPORT', 'MIXBOX_EXPORT')
 
-    app_project.save
+    File.open(file_path, "w") { |file| file.puts text }
+  end
+end
+
+def old_defines(framework)
+  "#ifdef __OBJC__
+#import <#{framework}/#{framework}.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern \"C\"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif"
 end

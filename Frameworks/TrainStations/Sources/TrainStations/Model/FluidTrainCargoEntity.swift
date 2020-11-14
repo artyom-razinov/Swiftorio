@@ -12,4 +12,8 @@ public struct FluidTrainCargoEntity: TrainCargoEntity {
     public var entityType: TrainCargoEntityType {
         return .fluid
     }
+    
+    public var isHidden: Bool {
+        return fluidPrototype.hidden
+    }
 }
