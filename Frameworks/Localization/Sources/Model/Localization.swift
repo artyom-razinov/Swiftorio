@@ -1,5 +1,6 @@
 import SwiftorioFoundation
 
+// TODO: Move logic to class. SRP.
 public final class Localization {
     public let locale: Locale
     public let sectionedMap: [LocalizationSectionName: [String: String]]
@@ -28,6 +29,48 @@ public final class Localization {
     }
     
     public func localize(
+        locator: Locator,
+        parameters: [String])
+        throws
+        -> String
+    {
+        var localizedString = try localizedTemplate(
+            locator: locator,
+            parameters: parameters
+        )
+        
+        for (index, parameter) in parameters.enumerated() {
+            localizedString = localizedString.replacingOccurrences(of: "__\(index)__", with: parameter)
+        }
+        
+        return localizedString
+    }
+    
+    func localizedTemplate(
+        locator: Locator,
+        parameters: [String])
+        throws
+        -> String
+    {
+        switch locator {
+        case let .fullId(fullId):
+            return try localizedTemplate(
+                fullId: fullId
+            )
+        case let .idInSpecificSection(sectionName, idInSpecificSection):
+            return try localizedTemplate(
+                sectionName: sectionName,
+                idInSpecificSection: idInSpecificSection
+            )
+        case let .idInAnySection(idInAnySection):
+            return try localizedTemplate(
+                idInAnySection: idInAnySection
+            )
+        }
+    }
+        
+    
+    private func localizedTemplate(
         fullId: String)
         throws
         -> String
@@ -37,9 +80,9 @@ public final class Localization {
         )
     }
     
-    public func localize(
+    private func localizedTemplate(
         sectionName: LocalizationSectionName,
-        idInSection: String)
+        idInSpecificSection: String)
         throws
         -> String
     {
@@ -47,12 +90,12 @@ public final class Localization {
             message: "Locale '\(locale.rawValue)' doesn't contain section '\(sectionName.rawValue)'"
         )
         
-        return try sectionDictionary[idInSection].unwrapOrThrow(
-            message: "Section '\(sectionName.rawValue)' of locale '\(locale.rawValue)' doesn't contain localization for '\(idInSection)'"
+        return try sectionDictionary[idInSpecificSection].unwrapOrThrow(
+            message: "Section '\(sectionName.rawValue)' of locale '\(locale.rawValue)' doesn't contain localization for '\(idInSpecificSection)'"
         )
     }
     
-    public func localize(
+    private func localizedTemplate(
         idInAnySection: String)
         throws
         -> String

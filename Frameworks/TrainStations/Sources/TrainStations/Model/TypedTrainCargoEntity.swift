@@ -1,4 +1,5 @@
 import SwiftorioDataRaw
+import SwiftorioLocalization
 
 public enum TypedTrainCargoEntity: TrainCargoEntity {
     case fluid(FluidTrainCargoEntity)
@@ -12,8 +13,8 @@ public enum TypedTrainCargoEntity: TrainCargoEntity {
         return associatedValue.isHidden
     }
     
-    public var localizedName: String {
-        return associatedValue.localizedName
+    public func localizedName(locale: Locale) throws -> String {
+        return try associatedValue.localizedName(locale: locale)
     }
     
     public var entityType: TrainCargoEntityType {

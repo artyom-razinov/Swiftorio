@@ -26,8 +26,18 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         return book(
             label: "Train network",
             description: "Train stops and trains for all resources (requester/provider) with rich text names",
-            blueprints: indexed(try categoryBooks(locale: .en))
+            blueprints: indexed(try categoryBooks(locale: .en)),
+            icons: icons([.trainStop])
         )
+    }
+    
+    private func icons(_ names: [AnyItemPrototypeName]) -> [SwiftorioBlueprints.Icon] {
+        return indexed(names.map {
+            SignalId(
+                name: $0.rawValue,
+                type: .item
+            )
+        })
     }
     
     private func indexed(_ books: [SwiftorioBlueprints.BlueprintBook]) -> [IndexedBlueprintOrBook] {
@@ -62,7 +72,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     }
     
     private func categoryBooks(locale: Locale) throws -> [BlueprintBook] {
-        let entities = try typedTrainCargoEntityProvider.typedTrainCargoEntities()
+        let entities = try typedTrainCargoEntityProvider.typedTrainCargoEntities(locale: locale)
         
         let categories = try trainCargoCategoriesProvider.trainCargoCategories(locale: locale)
         var countOfPrototypesAssignedToCategoryById = [String: Int]()
@@ -73,7 +83,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
             countOfPrototypesAssignedToCategoryById[$0.id] = 0
         }
         
-        let categoryBooks: [BlueprintBook] = categories.map { category in
+        let categoryBooks: [BlueprintBook] = try categories.map { category in
             let typedTrainCargoEntities = entities
                 .filter { category.match(typedTrainCargoEntity: $0) }
                 .sorted { lhs, rhs in isOrderedBefore(lhs: lhs, rhs: rhs) }
@@ -82,9 +92,10 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
                 countOfPrototypesAssignedToCategoryById[$0.id, default: 0] += 1
             }
             
-            return categoryBook(
+            return try categoryBook(
                 category: category,
-                typedTrainCargoEntities: typedTrainCargoEntities
+                typedTrainCargoEntities: typedTrainCargoEntities,
+                locale: locale
             )
         }
         
@@ -136,48 +147,103 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
     
     private func categoryBook(
         category: TrainCargoCategory,
-        typedTrainCargoEntities: [TypedTrainCargoEntity])
+        typedTrainCargoEntities: [TypedTrainCargoEntity],
+        locale: Locale)
+        throws
         -> SwiftorioBlueprints.BlueprintBook
     {
         return book(
             label: category.name,
-            blueprints: indexed(typedTrainCargoEntities.map(entityBook))
+            blueprints: indexed(try typedTrainCargoEntities.map { typedTrainCargoEntity in
+                try entityBook(
+                    typedTrainCargoEntity: typedTrainCargoEntity,
+                    locale: locale
+                )
+            }),
+            icons: indexed([SignalId(
+                name: category.icon,
+                type: signalIdType(
+                    trainCargoEntityType: category.trainCargoEntityType
+                )
+            )])
         )
     }
     
-    private func entityBook(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.BlueprintBook {
+    private func entityBook(
+        typedTrainCargoEntity: TypedTrainCargoEntity,
+        locale: Locale)
+        throws
+        -> SwiftorioBlueprints.BlueprintBook
+    {
+        let localizedCargoName = try typedTrainCargoEntity.localizedName(locale: locale)
+        
+        let cargoSignalId = SignalId(
+            name: typedTrainCargoEntity.id,
+            type: signalIdType(trainCargoEntityType: typedTrainCargoEntity.entityType)
+        )
+        
         return book(
-            label: typedTrainCargoEntity.localizedName,
-            description: "Train stops and trains for \(typedTrainCargoEntity.localizedName)",
+            label: localizedCargoName,
+            description: "Train stops and trains for \(localizedCargoName)",
             blueprints: indexed([
-                providerTrainStopBlueprint(typedTrainCargoEntity: typedTrainCargoEntity),
-                requesterTrainStopBlueprint(typedTrainCargoEntity: typedTrainCargoEntity),
-                trainBlueprint(typedTrainCargoEntity: typedTrainCargoEntity)
-            ])
+                providerTrainStopBlueprint(
+                    typedTrainCargoEntity: typedTrainCargoEntity,
+                    localizedCargoName: localizedCargoName,
+                    cargoSignalId: cargoSignalId
+                ),
+                requesterTrainStopBlueprint(
+                    typedTrainCargoEntity: typedTrainCargoEntity,
+                    localizedCargoName: localizedCargoName,
+                    cargoSignalId: cargoSignalId
+                ),
+                trainBlueprint(
+                    typedTrainCargoEntity: typedTrainCargoEntity,
+                    localizedCargoName: localizedCargoName,
+                    cargoSignalId: cargoSignalId
+                )
+            ]),
+            icons: indexed([cargoSignalId])
         )
     }
     
-    func providerTrainStopBlueprint(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.Blueprint {
+    func providerTrainStopBlueprint(
+        typedTrainCargoEntity: TypedTrainCargoEntity,
+        localizedCargoName: String,
+        cargoSignalId: SignalId)
+        -> SwiftorioBlueprints.Blueprint
+    {
         return trainStopBlueprint(
             typedTrainCargoEntity: typedTrainCargoEntity,
+            localizedCargoName: localizedCargoName,
             stationType: "provider",
             textColor: .red,
             stationColor: Color(r: 1, g: 0, b: 0, a: 1),
-            chestId: "logistic-chest-passive-provider"
+            chestId: .logisticChestPassiveProvider,
+            cargoSignalId: cargoSignalId
         )
     }
     
-    func requesterTrainStopBlueprint(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.Blueprint {
+    func requesterTrainStopBlueprint(
+        typedTrainCargoEntity: TypedTrainCargoEntity,
+        localizedCargoName: String,
+        cargoSignalId: SignalId)
+        -> SwiftorioBlueprints.Blueprint
+    {
         return trainStopBlueprint(
             typedTrainCargoEntity: typedTrainCargoEntity,
+            localizedCargoName: localizedCargoName,
             stationType: "requester",
             textColor: .blue,
             stationColor: Color(r: 0, g: 0, b: 1, a: 1),
-            chestId: "logistic-chest-requester"
+            chestId: .logisticChestRequester,
+            cargoSignalId: cargoSignalId
         )
     }
     
-    func imgTagClass(trainCargoEntityType: TrainCargoEntityType) -> ImgTagClass {
+    func imgTagClass(
+        trainCargoEntityType: TrainCargoEntityType)
+        -> ImgTagClass
+    {
         switch trainCargoEntityType {
         case .fluid:
             return .fluid
@@ -186,26 +252,31 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
     }
     
-    func cargoImage(typedTrainCargoEntity: TypedTrainCargoEntity) -> ImgTag {
+    func cargoImage(
+        typedTrainCargoEntity: TypedTrainCargoEntity)
+        -> ImgTag
+    {
         return ImgTag(
             class: imgTagClass(trainCargoEntityType: typedTrainCargoEntity.entityType),
             name: typedTrainCargoEntity.id
         )
     }
     
-    func chestImage(chestId: String) -> ImgTag {
+    func chestImage(chestId: AnyItemPrototypeName) -> ImgTag {
         return ImgTag(
             class: .item,
-            name: chestId
+            name: chestId.rawValue
         )
     }
     
     func trainStopBlueprint(
         typedTrainCargoEntity: TypedTrainCargoEntity,
+        localizedCargoName: String,
         stationType: String,
         textColor: ColorTextModifierColorAlias,
         stationColor: Color,
-        chestId: String)
+        chestId: AnyItemPrototypeName,
+        cargoSignalId: SignalId)
         -> SwiftorioBlueprints.Blueprint
     {
         let cargoImage = self.cargoImage(typedTrainCargoEntity: typedTrainCargoEntity)
@@ -215,7 +286,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
                 + $0.image(chestImage(chestId: chestId))
                 + " "
                 + $0.color(textColor) {
-                    $0.text("\(typedTrainCargoEntity.localizedName) \(stationType)")
+                    $0.text("\(localizedCargoName) \(stationType)")
                 }
         }
         
@@ -234,11 +305,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
                     station: stationName
                 )
             ],
-            icons: trainStopIcons(
-                trainCargoEntityType: typedTrainCargoEntity.entityType,
-                cargoId: typedTrainCargoEntity.id,
-                chestId: chestId
-            )
+            icons: icons([chestId])
         )
     }
     
@@ -316,41 +383,36 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
     }
     
-    func trainStopIcons(
-        trainCargoEntityType: TrainCargoEntityType,
-        cargoId: String,
-        chestId: String)
-        -> [SwiftorioBlueprints.Icon]
+    func trainBlueprint(
+        typedTrainCargoEntity: TypedTrainCargoEntity,
+        localizedCargoName: String,
+        cargoSignalId: SignalId)
+        -> SwiftorioBlueprints.Blueprint
     {
-        let cargoSignalId = SignalId(
-            name: cargoId,
-            type: signalIdType(trainCargoEntityType: trainCargoEntityType)
+        return blueprint(
+            label: "FIXME",
+            entities: [],
+            icons: indexed([
+                SignalId(
+                    name: AnyItemPrototypeName.locomotive.rawValue,
+                    type: .item
+                ),
+                SignalId(
+                    name: AnyItemPrototypeName.cargoWagon.rawValue,
+                    type: .item
+                ),
+                cargoSignalId,
+                cargoSignalId
+            ])
         )
-        
-        return indexed([
-            SignalId(
-                name: "train-stop",
-                type: .item
-            ),
-            cargoSignalId,
-            SignalId(
-                name: chestId,
-                type: .item
-            ),
-            cargoSignalId
-        ])
-    }
-    
-    func trainBlueprint(typedTrainCargoEntity: TypedTrainCargoEntity) -> SwiftorioBlueprints.Blueprint {
-        return blueprint(label: "FIXME", entities: [])
     }
     
     private func blueprint(
         label: String,
         description: String? = nil,
-        entities: [SwiftorioBlueprints.Entity],
-        icons: [SwiftorioBlueprints.Icon]? = nil,
-        schedules: [SwiftorioBlueprints.Schedule]? = nil)
+        entities: [Entity],
+        icons: [SwiftorioBlueprints.Icon],
+        schedules: [Schedule]? = nil)
         -> SwiftorioBlueprints.Blueprint
     {
         return SwiftorioBlueprints.Blueprint(
@@ -366,13 +428,20 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         )
     }
     
-    private func book(label: String, description: String? = nil, blueprints: [IndexedBlueprintOrBook]) -> SwiftorioBlueprints.BlueprintBook {
+    private func book(
+        label: String,
+        description: String? = nil,
+        blueprints: [IndexedBlueprintOrBook],
+        icons: [SwiftorioBlueprints.Icon])
+        -> SwiftorioBlueprints.BlueprintBook
+    {
         return SwiftorioBlueprints.BlueprintBook(
             item: "blueprint-book",
             label: label,
             description: description,
             label_color: nil,
             blueprints: blueprints,
+            icons: icons,
             active_index: 0,
             version: version
         )

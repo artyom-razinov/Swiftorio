@@ -1,3 +1,5 @@
+import SwiftorioLocalization
+
 public protocol TypedTrainCargoEntityProvider {
-    func typedTrainCargoEntities() throws -> [TypedTrainCargoEntity]
+    func typedTrainCargoEntities(locale: Locale) throws -> [TypedTrainCargoEntity]
 }

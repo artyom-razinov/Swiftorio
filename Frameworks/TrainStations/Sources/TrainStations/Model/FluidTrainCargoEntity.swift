@@ -1,9 +1,14 @@
 import SwiftorioDataRaw
+import SwiftorioLocalization
 
 public struct FluidTrainCargoEntity: TrainCargoEntity {
     public let id: String
-    public let localizedName: String
     public let fluidPrototype: FluidPrototype
+    public let provideLocalizedName: (Locale) throws -> String
+    
+    public func localizedName(locale: Locale) throws -> String {
+        try provideLocalizedName(locale)
+    }
     
     public var itemOrFluidPrototype: ItemOrFluidPrototype {
         return fluidPrototype
