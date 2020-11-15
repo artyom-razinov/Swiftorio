@@ -5,6 +5,7 @@ public struct ItemTrainCargoEntity: TrainCargoEntity {
     public let id: String
     public let itemPrototype: ItemPrototype
     public let provideLocalizedName: (Locale) throws -> String
+    public let order: Order
     
     public func localizedName(locale: Locale) throws -> String {
         try provideLocalizedName(locale)

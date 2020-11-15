@@ -86,7 +86,7 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         let categoryBooks: [BlueprintBook] = try categories.map { category in
             let typedTrainCargoEntities = entities
                 .filter { category.match(typedTrainCargoEntity: $0) }
-                .sorted { lhs, rhs in isOrderedBefore(lhs: lhs, rhs: rhs) }
+                .sorted { lhs, rhs in lhs.order < rhs.order }
             
             typedTrainCargoEntities.forEach {
                 countOfPrototypesAssignedToCategoryById[$0.id, default: 0] += 1
@@ -130,19 +130,6 @@ public final class TrainStationsBlueprintBookProviderImpl: TrainStationsBlueprin
         }
         
         return categoryBooks
-    }
-    
-    private func isOrderedBefore(
-        lhs: TypedTrainCargoEntity,
-        rhs: TypedTrainCargoEntity)
-        -> Bool
-    {
-        return orderComparator.isOrderedBefore(
-            lhsOrder: lhs.itemOrFluidPrototype.order,
-            lhsName: lhs.id,
-            rhsOrder: rhs.itemOrFluidPrototype.order,
-            rhsName: rhs.id
-        )
     }
     
     private func categoryBook(

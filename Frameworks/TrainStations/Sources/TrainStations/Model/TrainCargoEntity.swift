@@ -6,6 +6,7 @@ public protocol TrainCargoEntity {
     var entityType: TrainCargoEntityType { get }
     var itemOrFluidPrototype: ItemOrFluidPrototype { get }
     var isHidden: Bool { get }
+    var order: Order { get }
     
     func localizedName(locale: Locale) throws -> String
 }

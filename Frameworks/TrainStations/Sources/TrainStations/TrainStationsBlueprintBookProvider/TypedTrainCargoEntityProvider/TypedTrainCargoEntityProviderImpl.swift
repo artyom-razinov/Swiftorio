@@ -1,5 +1,6 @@
 import SwiftorioDataRaw
 import SwiftorioLocalization
+import SwiftorioFoundation
 
 public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvider {
     private let dataRawProvider: DataRawProvider
@@ -35,8 +36,27 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
         
         var trainCargoEntities: [TypedTrainCargoEntity] = []
         
-        trainCargoEntities.append(
+        try trainCargoEntities.append(
             contentsOf: allItems.compactMap { [localizer] itemWithId in
+                let subgroupName = itemWithId.value.subgroup
+                let subgroup = try dataRaw.itemSubgroup.keyedByPrototypeName[subgroupName].unwrapOrThrow()
+                let groupName = subgroup.group
+                let group = try dataRaw.itemGroup.keyedByPrototypeName[groupName].unwrapOrThrow()
+                let order = [
+                    self.order(
+                        order: group.order,
+                        id: group.name
+                    ),
+                    self.order(
+                        order: subgroup.order,
+                        id: subgroup.name
+                    ),
+                    self.order(
+                        order: itemWithId.value.order,
+                        id: itemWithId.id
+                    )
+                ].joined(separator: "|")
+                
                 return TypedTrainCargoEntity.item(
                     ItemTrainCargoEntity(
                         id: itemWithId.id,
@@ -56,7 +76,8 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                                     idInAnySection: prototype.name
                                 )
                             }
-                        }
+                        },
+                        order: order
                     )
                 )
             }
@@ -74,12 +95,21 @@ public final class TypedTrainCargoEntityProviderImpl: TypedTrainCargoEntityProvi
                                 sectionName: .fluidName,
                                 idInSection: itemWithId.id
                             )
-                        }
+                        },
+                        order: order(
+                            order: itemWithId.value.order,
+                            id: itemWithId.id
+                        )
                     )
                 )
             }
         )
         
         return trainCargoEntities.filter { !$0.isHidden }
+    }
+    
+    private func order(order: Order?, id: String) -> Order {
+        return order.map { "0:\($0)" }
+            ?? "1:\(id)"
     }
 }

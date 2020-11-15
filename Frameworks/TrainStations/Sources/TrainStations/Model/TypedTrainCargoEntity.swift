@@ -25,6 +25,10 @@ public enum TypedTrainCargoEntity: TrainCargoEntity {
         return associatedValue.itemOrFluidPrototype
     }
     
+    public var order: Order {
+        return associatedValue.order
+    }
+    
     private var associatedValue: TrainCargoEntity {
         switch self {
         case let .fluid(value):

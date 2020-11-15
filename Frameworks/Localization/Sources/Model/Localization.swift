@@ -40,7 +40,15 @@ public final class Localization {
         )
         
         for (index, parameter) in parameters.enumerated() {
-            localizedString = localizedString.replacingOccurrences(of: "__\(index)__", with: parameter)
+            let localizationIndex = index + 1
+            
+            localizedString = localizedString.replacingOccurrences(
+                of: "__\(localizationIndex)__",
+                with: try localize(
+                    locator: .fullId(parameter),
+                    parameters: []
+                )
+            )
         }
         
         return localizedString
