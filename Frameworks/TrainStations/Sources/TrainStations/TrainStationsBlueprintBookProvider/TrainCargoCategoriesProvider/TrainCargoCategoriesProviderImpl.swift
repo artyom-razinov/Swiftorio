@@ -36,7 +36,7 @@ public final class TrainCargoCategoriesProviderImpl: TrainCargoCategoriesProvide
             .sorted { (lhs, rhs) in
                 orderComparator.isOrderedBefore(
                     lhs: lhs.prototype,
-                    rhs: lhs.prototype
+                    rhs: rhs.prototype
                 )
             }
             .compactMap {
